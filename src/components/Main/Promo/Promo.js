@@ -3,7 +3,7 @@ import './Promo.css';
 function Promo() {
   return (
     <div className="Promo">
-        
+        Promo
     </div>
   );
 }

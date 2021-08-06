@@ -1,9 +1,19 @@
 import './Movies.css';
 
+import SearchForm from './SearchForm/SearchForm.js';
+import Preloader from './Preloader/Preloader.js';
+import MoviesCardList from '../MoviesCardList/MoviesCardList.js';
+import MoviesCard from '../MoviesCard/MoviesCard.js';
+
 function Movies() {
   return (
     <div className="Movies">
-        
+      ↓↓↓ Movies ↓↓↓
+      <SearchForm />
+      <Preloader />
+      <MoviesCardList />
+      <MoviesCard />
+      ↑↑↑ Movies ↑↑↑
     </div>
   );
 }
