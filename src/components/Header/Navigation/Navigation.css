@@ -15,15 +15,13 @@
     background-color: rgb(43, 224, 128);
 }
 
-@media (max-width: 320px) {
+@media (max-width: 767px) {
     .navigation__button-register {
         width: 64px;
         height: 26px;
         margin-right: 14px;
     }
-}
 
-@media (max-width: 320px) {
     .navigation__button-open {
         width: 54px;
         height: 26px;

@@ -10,13 +10,13 @@
     background-color: rgb(7, 48, 66);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1279px) {
     .Header {
         padding:0 30px;
     }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 767px) {
     .Header {
         padding: 0 14px;
         font-size: 10px;

@@ -15,13 +15,11 @@
     color: white;
 }
 
-@media (max-width: 320px) {
+@media (max-width: 767px) {
     .NavTab__link {
         margin-right: 24px;
     }
-}
 
-@media (max-width: 320px) {
     .NavTab {
         font-size: 11px;
     }

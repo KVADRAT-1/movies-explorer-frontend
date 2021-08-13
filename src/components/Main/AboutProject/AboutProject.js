@@ -16,7 +16,7 @@ function AboutProject() {
         </div>
         <div className='visual-info'>
           <div className='visual-info__one-week'>1 неделя</div>
-          <div className='visual-info__four week'>4 недели</div>
+          <div className='visual-info__four-week'>4 недели</div>
           <div className='visual-info__back-end'>Back-end</div>
           <div className='visual-info__front-end'>Front-end</div>
         </div>
