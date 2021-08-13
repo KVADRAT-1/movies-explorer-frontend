@@ -1,3 +1,5 @@
+import './style/normalize.css';
+import './fonts/inter.css';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom'
 import ReactDOM from 'react-dom';

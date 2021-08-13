@@ -1,0 +1,32 @@
+.NavTab {
+    height: 66px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    color: white;
+    background-color: rgb(0, 0, 0);
+}
+
+.NavTab__link {
+    margin-right: 40px;
+    color: white;
+}
+
+@media (max-width: 320px) {
+    .NavTab__link {
+        margin-right: 24px;
+    }
+}
+
+@media (max-width: 320px) {
+    .NavTab {
+        font-size: 11px;
+    }
+}
+
+.NavTab__link:last-child {
+    margin-right: 0;
+}

@@ -1,17 +1,16 @@
 import './Main.css';
 
-import Promp from './Promo/Promo.js';
-import NavTab from './NavTab/NavTab.js';
+import Promo from './Promo/Promo.js';
 import AboutProject from './AboutProject/AboutProject.js';
 import Techs from './Techs/Techs.js';
 import AboutMe from './AboutMe/AboutMe.js';
 import Portfolio from './Portfolio/Portfolio.js';
+import NavTab from './NavTab/NavTab.js';
 
 function Main() {
   return (
     <div className="Main">
-      ↓↓↓ Main ↓↓↓
-      <Promp />
+      <Promo />
       <NavTab />
       <AboutProject />
       <Techs />

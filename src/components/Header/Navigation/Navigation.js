@@ -3,7 +3,8 @@ import './Navigation.css';
 function Navigation() {
   return (
     <div className="Navigation">
-      !! Navigation !!
+      <button className='navigation__button-register'>Регистрация</button>
+      <button className='navigation__button-open'>Войти</button>
     </div>
   );
 }

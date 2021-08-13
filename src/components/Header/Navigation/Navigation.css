@@ -1,0 +1,31 @@
+.navigation__button-register {
+    width: 77px;
+    height: 32px;
+    margin-right: 30px;
+    border: none;
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0, 0);
+}
+
+.navigation__button-open {
+    width: 76px;
+    height: 32px;
+    border: none;
+    border-radius: 3%;
+    background-color: rgb(43, 224, 128);
+}
+
+@media (max-width: 320px) {
+    .navigation__button-register {
+        width: 64px;
+        height: 26px;
+        margin-right: 14px;
+    }
+}
+
+@media (max-width: 320px) {
+    .navigation__button-open {
+        width: 54px;
+        height: 26px;
+    }
+}

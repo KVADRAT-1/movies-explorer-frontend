@@ -1,0 +1,32 @@
+.Promo {
+    height: 524px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('../../../images/__promo/Images__promo.svg') no-repeat center;
+    background-size: 320px;
+    color: white;
+    background-color: rgb(7, 48, 66);
+}
+
+.Promo__title {
+    max-width: 730px;
+    margin: 0;
+    font-style: normal;
+	font-weight: 400;
+	font-size: 50px;
+}
+
+@media (max-width: 320px) {
+    .Promo {
+        background-size: 248px;
+    }
+  }
+
+@media (max-width: 320px) {
+    .Promo__title {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 31px;
+    }
+  }
