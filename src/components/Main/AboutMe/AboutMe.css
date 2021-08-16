@@ -1,3 +1,225 @@
 .AboutMe {
-    height: 1079px;
+    padding:110px 70px;
+}
+
+.AboutMe__title {
+    height: 40px;
+    margin: 0;
+    text-align: left;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    border-bottom: 1px solid  rgb(0, 0, 0);
+}
+
+.AboutMe__student {
+    margin: 66px 0 100px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.AboutMe__paragraph {
+    order: 1;
+    max-width: 600px;
+    text-align: left;
+}
+
+.AboutMe__paragraph-title {
+    margin: 0 0 18px 0;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 50px;
+    line-height: 58px;
+}
+
+.AboutMe__paragraph-subtitle {
+    margin: 0;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+}
+
+.AboutMe__link {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+.AboutMe__link:hover {
+    color: #CCCCCC;
+}
+
+.AboutMe__link:first-child {
+    margin: 0 20px 0 0;
+}
+
+.AboutMe__description {
+    margin: 26px 0 99px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 22px;
+}
+
+.AboutMe__photo {
+    order: 2;
+    width: 270px;
+    background: no-repeat center url(https://avatarko.ru/img/kartinka/33/multfilm_lyagushka_32117.jpg);
+    background-size: cover;
+    border-radius: 10px;
+}
+
+.AboutMe__portfolio {
+    text-align: left;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 20px;
+    color:#A0A0A0;
+}
+
+.AboutMe__portfolio-list {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+}
+
+.AboutMe__portfolio-item {
+    padding: 20px 0;
+    border-bottom: solid 1px #E6E6E6;
+}
+
+.AboutMe__portfolio-item:hover {
+    background-color: rgba(200, 200, 200, 0.1);
+}
+
+.AboutMe__portfolio-link {
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 50px;
+    color: black;
+}
+
+.AboutMe__portfolio-text {
+    margin: 0;
+}
+
+.AboutMe__portfolio-arrow {
+    width: 22px;
+    height: 22px;
+    background: no-repeat center url(../../../images/__AboutMe/AboutMe__linck.svg);
+    background-size: cover;
+}
+
+@media (max-width: 1279px) {
+    .AboutMe {
+        padding: 90px 50px;
+    }
+
+    .AboutMe__student {
+        margin: 66px 0 90px;
+    }
+
+    .AboutMe__paragraph {
+        max-width: 400px;
+    }
+    
+    .AboutMe__paragraph-title {
+        font-size: 40px;
+        line-height: 40px;
+    }
+    
+    .AboutMe__paragraph-subtitle {
+        font-size: 12px;
+        line-height: 18px;
+    }
+    
+    .AboutMe__description {
+        margin: 20px 0 87px;
+        font-size: 12px;
+        line-height: 18px;
+    }
+    
+    .AboutMe__photo {
+        width: 255px;
+        height: 307px;
+    }
+
+    .AboutMe__portfolio {
+        margin-bottom: 30px;
+    }
+    
+    .AboutMe__portfolio-link {
+        font-size: 28px;
+        line-height: 50px;
+    }
+    
+    .AboutMe__portfolio-arrow {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 767px) {
+    .AboutMe {
+        padding: 70px 14px;
+    }
+
+    .AboutMe__title {
+        font-size: 18px;
+        line-height: 22px;
+    }
+    
+    .AboutMe__student {
+        flex-direction: column;
+        margin: 60px 0 70px;
+    }
+
+    .AboutMe__photo {
+        width: 292px;
+        margin: 0 auto;
+        order: 1;
+    }
+    
+    .AboutMe__paragraph {
+        margin: 40px auto 0;
+        order: 2;
+    }
+    
+    .AboutMe__paragraph-title {
+        margin: 0 0 20px 0;
+        font-size: 30px;
+        line-height: 36px;
+    }
+    
+    .AboutMe__paragraph-subtitle {
+        font-size: 11px;
+        line-height: 16px;
+    }
+    
+    .AboutMe__description {
+        margin: 20px 0 40px;
+        font-size: 11px;
+        line-height: 16px;
+    }
+
+    .AboutMe__portfolio {
+        margin-bottom: 40px;
+    }
+    
+    .AboutMe__portfolio-link {
+        font-size: 18px;
+        line-height: 28px;
+    }
+    
+    .AboutMe__portfolio-arrow {
+        width: 15px;
+        height: 15px;
+    }
 }
