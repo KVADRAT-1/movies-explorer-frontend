@@ -1,9 +1,29 @@
 import './MoviesCardList.css';
 
+import MoviesCard from '../MoviesCard/MoviesCard.js';
+
 function MoviesCardList() {
   return (
     <div className="MoviesCardList">
-        MoviesCardList
+      <ul className="MoviesCardList__list">
+        <li className="MoviesCardList__item"><MoviesCard/></li>
+        <li className="MoviesCardList__item"><MoviesCard/></li>
+        <li className="MoviesCardList__item"><MoviesCard/></li>
+        <li className="MoviesCardList__item"><MoviesCard/></li>
+        <li className="MoviesCardList__item"><MoviesCard/></li>
+        <li className="MoviesCardList__item"><MoviesCard/></li>
+        <li className="MoviesCardList__item"><MoviesCard/></li>
+        <li className="MoviesCardList__item"><MoviesCard/></li>
+        <li className="MoviesCardList__item"><MoviesCard/></li>
+        <li className="MoviesCardList__item"><MoviesCard/></li>
+        <li className="MoviesCardList__item"><MoviesCard/></li>
+        <li className="MoviesCardList__item"><MoviesCard/></li>
+        <li className="MoviesCardList__item"><MoviesCard/></li>
+        <li className="MoviesCardList__item"><MoviesCard/></li>
+        <li className="MoviesCardList__item"><MoviesCard/></li>
+        <li className="MoviesCardList__item"><MoviesCard/></li>
+      </ul>
+      <button className="MoviesCardList__button">Ещё</button>
     </div>
   );
 }

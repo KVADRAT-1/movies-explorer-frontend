@@ -15,6 +15,10 @@
     color: white;
 }
 
+.NavTab__link:hover {
+    opacity: 0.8;
+}
+
 @media (max-width: 767px) {
     .NavTab__link {
         margin-right: 24px;

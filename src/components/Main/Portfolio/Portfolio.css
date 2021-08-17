@@ -1,0 +1,91 @@
+.Portfolio {
+    padding:0 70px 125px;
+}
+
+.Portfolio__title {
+    text-align: left;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 20px;
+    color:#A0A0A0;
+}
+
+.Portfolio__list {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+}
+
+.Portfolio__item {
+    padding: 20px 0;
+    border-bottom: solid 1px #E6E6E6;
+}
+
+.Portfolio__item:hover {
+    background-color: rgba(200, 200, 200, 0.1);
+}
+
+.Portfolio__link {
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 50px;
+    color: black;
+}
+
+.Portfolio__text {
+    margin: 0;
+}
+
+.Portfolio__arrow {
+    width: 22px;
+    height: 22px;
+    background: no-repeat center url(../../../images/__AboutMe/AboutMe__linck.svg);
+    background-size: cover;
+}
+
+@media (max-width: 1279px) {
+    .Portfolio {
+        padding: 90px 50px;
+    }
+
+    .Portfolio__title {
+        margin-bottom: 30px;
+    }
+    
+    .Portfolio__link {
+        font-size: 28px;
+        line-height: 50px;
+    }
+    
+    .Portfolio__arrow {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 767px) {
+    .Portfolio {
+        padding: 70px 14px;
+    }
+
+    .Portfolio__title {
+        margin-bottom: 40px;
+    }
+    
+    .Portfolio__link {
+        font-size: 18px;
+        line-height: 28px;
+    }
+    
+    .Portfolio__arrow {
+        width: 15px;
+        height: 15px;
+    }
+}

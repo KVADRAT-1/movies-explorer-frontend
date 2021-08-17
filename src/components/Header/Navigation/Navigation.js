@@ -1,10 +1,11 @@
 import './Navigation.css';
+import { Link } from 'react-router-dom';
 
 function Navigation() {
   return (
     <div className="Navigation">
-      <button className='navigation__button-register'>Регистрация</button>
-      <button className='navigation__button-open'>Войти</button>
+      <Link className='navigation__button-register' to='/sign-in' href="./Navigation.css">Регистрация</Link>
+      <Link className='navigation__button-open' to='/sign-up' href="./Navigation.css" style={{textDecoration: 'none'}}>Войти</Link>
     </div>
   );
 }

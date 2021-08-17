@@ -1,0 +1,70 @@
+.MoviesCard {
+    display: grid;
+    grid-template-columns: 1fr 24px;
+}
+
+.MoviesCard__photo {
+    width: 100%;
+    height: 151px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    background: no-repeat url(../../images/trash/165083-retrovejv-legkovyye_avtomobili-audi_avant_2-synthwave-voda-1920x1080.jpg);
+    background-size: cover;
+}
+
+.MoviesCard__text {
+    margin: 14px 0 29px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    text-align: start;
+}
+
+.MoviesCard__buttom {
+    width: 24px;
+    height: 24px;
+    margin: 10px 0 25px;
+    padding: 0;
+    border: none;
+    background: url(../../images/MoviesCard/noLike.svg);
+}
+
+.MoviesCard__movie-time {
+    margin: 0;
+    padding-top: 6px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 11px;
+    line-height: 13px;
+    text-align: start;
+    border-top: solid 1px #E8E8E8;
+    color: #A0A0A0;
+}
+
+@media (max-width: 1279px) {
+    .MoviesCard__photo {
+        width: 339px;
+        height: 190px;
+    }
+}
+
+@media (max-width: 767px) {
+    .MoviesCard__photo {
+        width: 300px;
+        height: 168px;
+    }
+
+    .MoviesCard__text {
+        margin: 15px 0 29px;
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+    .MoviesCard__movie-time {
+        font-size: 10px;
+        line-height: 12px;
+    }
+}

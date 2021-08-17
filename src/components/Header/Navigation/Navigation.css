@@ -1,24 +1,33 @@
 .navigation__button-register {
+    text-decoration: none;
+	font-style: normal;
+	font-weight: normal;
     width: 77px;
     height: 32px;
     margin-right: 30px;
-    border: none;
     color: rgb(255, 255, 255);
-    background-color: rgb(0, 0, 0, 0);
+}
+
+.navigation__button-register:hover {
+    opacity: 0.8;
+    cursor: pointer;
 }
 
 .navigation__button-open {
-    width: 76px;
-    height: 32px;
-    border: none;
+    padding: 8px 20px;
     border-radius: 3%;
+    color: black;
     background-color: rgb(43, 224, 128);
+}
+
+.navigation__button-open:hover {
+    opacity: 0.8;
+    cursor: pointer
 }
 
 @media (max-width: 767px) {
     .navigation__button-register {
-        width: 64px;
-        height: 26px;
+        padding: 5px 12px;
         margin-right: 14px;
     }
 
