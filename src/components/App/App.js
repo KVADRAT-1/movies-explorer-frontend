@@ -2,6 +2,7 @@ import './App.css';
 import { React } from 'react'; // useEffect, useState
 import { Switch, Route } from 'react-router-dom'; // Redirect, useHistory,
 
+import ProtectedRoute from '../ProtectedRoute.js';
 import Header from '../Header/Header.js';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer.js';
@@ -11,22 +12,36 @@ import Register from '../Register/Register';
 import Login from '../Login/Login.js';
 import Profile from '../Profile/Profile.js';
 
+const loggedIn = true;
+
 function App() {
   return (
     <div className='App'>
       <Header />
       <Switch>
         <Route exact path='/'>
-          <Main />
+          <ProtectedRoute 
+            component={Main}
+            loggedIn={loggedIn}
+          />
         </Route>
         <Route exact path='/movies'>
-          <Movies />
+          <ProtectedRoute 
+            component={Movies}
+            loggedIn={loggedIn}
+          />
         </Route>
         <Route exact path='/saved-movies'>
-          <SavedMovies />
+          <ProtectedRoute 
+            component={SavedMovies}
+            loggedIn={loggedIn}
+          />
         </Route>
         <Route exact path='/profile'>
-          <Profile />
+          <ProtectedRoute 
+            component={Profile}
+            loggedIn={loggedIn}
+          />
         </Route>
         <Route exact path='/signin'>
           <Register />

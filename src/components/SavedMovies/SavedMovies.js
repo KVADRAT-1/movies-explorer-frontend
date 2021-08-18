@@ -1,15 +1,12 @@
 import './SavedMovies.css';
 
+
 import MoviesCardList from '../MoviesCardList/MoviesCardList.js';
-import MoviesCard from '../MoviesCard/MoviesCard.js';
 
 function SavedMovies() {
   return (
     <div className="SavedMovies">
-      ↓↓↓ SavedMovies ↓↓↓
       <MoviesCardList />
-      <MoviesCard />
-      ↑↑↑ SavedMovies ↑↑↑
     </div>
   );
 }
