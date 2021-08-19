@@ -1,6 +1,6 @@
 import './App.css';
 import { React } from 'react'; // useEffect, useState
-import { Switch, Route } from 'react-router-dom'; // Redirect, useHistory,
+import { useLocation, Switch, Route } from 'react-router-dom'; // Redirect, useHistory,
 
 import ProtectedRoute from '../ProtectedRoute.js';
 import Header from '../Header/Header.js';
@@ -15,6 +15,7 @@ import Profile from '../Profile/Profile.js';
 const loggedIn = true;
 
 function App() {
+  const { pathname } = useLocation();
   return (
     <div className='App'>
       <Header />
@@ -50,7 +51,7 @@ function App() {
           <Login />
         </Route>
       </Switch>
-      <Footer />
+      {!(pathname === '/profile' || pathname === '/signin' || pathname === '/signin') && <Footer />}
 		</div>
   );
 }
