@@ -1,8 +1,8 @@
 import './App.css';
-import { React } from 'react'; // useEffect, useState
-import { useLocation, Switch, Route } from 'react-router-dom'; // Redirect, useHistory,
+import { React } from 'react';
+import { useLocation, Switch, Route } from 'react-router-dom';
 
-import ProtectedRoute from '../ProtectedRoute.js';
+import ProtectedRoute from '../reusableComponents/ProtectedRoute.js';
 import Header from '../Header/Header.js';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer.js';
