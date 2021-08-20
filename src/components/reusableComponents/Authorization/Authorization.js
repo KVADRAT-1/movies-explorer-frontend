@@ -1,6 +1,6 @@
 import './Authorization.css';
 import { Link, useLocation } from 'react-router-dom';
-import icon from '../../images/Header/Icon.svg';
+import icon from '../../../images/reusableImages/logo.svg';
 
 function Authorization() {
     const { pathname } = useLocation();

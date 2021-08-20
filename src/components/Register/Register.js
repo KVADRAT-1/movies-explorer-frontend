@@ -1,5 +1,5 @@
 import './Register.css';
-import Authorization from '../Authorization/Authorization.js'
+import Authorization from '../reusableComponents/Authorization/Authorization.js'
 
 function Register() {
   return (

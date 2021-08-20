@@ -1,7 +1,7 @@
 import './SavedMovies.css';
 
-import SearchForm from '../Movies/SearchForm/SearchForm.js';
-import MoviesCardList from '../MoviesCardList/MoviesCardList.js';
+import SearchForm from '../reusableComponents/SearchForm/SearchForm.js';
+import MoviesCardList from '../reusableComponents/MoviesCardList/MoviesCardList.js';
 
 function SavedMovies() {
   return (

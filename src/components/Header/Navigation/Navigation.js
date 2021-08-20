@@ -1,7 +1,7 @@
 import './Navigation.css';
 import { Link, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
-import icon from '../../../images/Header/Navigation/iconNavigation.svg';
+import icon from '../../../images/Header/Navigation/Navigation__icon-nav.svg';
 
 function Navigation() {
   

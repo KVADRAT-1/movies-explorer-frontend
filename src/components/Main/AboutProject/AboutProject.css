@@ -12,16 +12,16 @@
     border-bottom: 1px solid  rgb(0, 0, 0);
 }
 
-.info-text {
+.AboutProject__info {
     margin: 70px 0 110px;
     display: flex;
 }
 
-.info-text__paragraph:first-child {
+.AboutProject__paragraph:first-child {
     margin-right: 40px;
 }
 
-.info-text__title {
+.AboutProject__paragraph-title {
     margin: 0;
     text-align: left;
     font-style: normal;
@@ -29,7 +29,7 @@
     font-size: 20px;
 }
 
-.info-text__description {
+.AboutProject__paragraph-description {
     margin: 26px 0 0 0;
     text-align: left;
     font-style: normal;
@@ -37,7 +37,7 @@
     font-size: 14px;
 }
 
-.visual-info {
+.AboutProject__visual-info {
     margin: 0 70px;
     display: grid;
     grid-template-columns: 1fr 3fr;
@@ -48,24 +48,24 @@
     line-height: 17px;
 }
 
-.visual-info div {
+.AboutProject__visual-info div {
     padding-top: 9px;
 }
 
-.visual-info__one-week {
+.AboutProject__one-week {
     background-color: #2BE080;
 }
 
-.visual-info__four-week {
+.AboutProject__four-week {
     background-color: #F2F2F2;
 }
 
-.visual-info__back-end {
+.AboutProject__back-end {
     font-weight: 500;
     color: #A0A0A0;
 }
 
-.visual-info__front-end {
+.AboutProject__front-end {
     font-weight: 500;
     color: #A0A0A0;
 }
@@ -75,20 +75,20 @@
         padding: 90px 50px;
     }
 
-    .info-text {
+    .AboutProject__info {
         margin: 70px 0 93px;
     }
 
-    .info-text__paragraph:first-child {
+    .AboutProject__paragraph:first-child {
         margin-right: 30px;
     }
 
-    .info-text__description {
+    .AboutProject__paragraph-description {
         margin: 22px 0 0 0;
         font-size: 12px;
     }
 
-    .visual-info {
+    .AboutProject__visual-info {
         margin: 0 50px;
         grid-template-rows: repeat(2, 35px);
         font-size: 11px;
@@ -105,25 +105,25 @@
         font-size: 18px;
     }
 
-    .info-text {
+    .AboutProject__info {
         margin: 60px 0;
         flex-direction: column;
     }
 
-    .info-text__paragraph:first-child {
+    .AboutProject__paragraph:first-child {
         margin: 0 0 56px 0;
     }
 
-    .info-text__title {
+    .AboutProject__paragraph-title {
         font-size: 18px;
     }
 
-    .info-text__description {
+    .AboutProject__paragraph-description {
         margin: 16px 0 0 0;
         font-size: 11px;
     }
 
-    .visual-info {
+    .AboutProject__visual-info {
         margin: 0 18px;
         grid-template-rows: repeat(2, 35px);
         font-size: 11px;

@@ -2,8 +2,8 @@ import './MoviesCard.css';
 
 import { useState } from 'react';
 
-import likeNotActive from '../../images/MoviesCard/likeNotActive.svg';
-import likeActive from '../../images/MoviesCard/likeActive.svg';
+import likeNotActive from '../../../../images/MoviesCard/MoviesCard__like_Not-Active.svg';
+import likeActive from '../../../../images/MoviesCard/MoviesCard__like_Active.svg';
 
 function MoviesCard() {
   const [likeToSwitch, setLikeToSwitch] = useState(false);

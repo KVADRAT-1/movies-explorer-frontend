@@ -4,8 +4,8 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import NavigationMain from './NavigationMain/NavigationMain.js';
 import Navigation from './Navigation/Navigation.js';
-import iconMain from '../../images/Header/IconMain.svg';
-import icon from '../../images/Header/Icon.svg';
+import iconMain from '../../images/Header/NavigationMain/NavigationMain__logo.svg';
+import icon from '../../images/reusableImages/logo.svg';
 
 function Header() {
   const { pathname } = useLocation();
