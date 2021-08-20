@@ -4,24 +4,15 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import NavigationMain from './NavigationMain/NavigationMain.js';
 import Navigation from './Navigation/Navigation.js';
-import Icon from './Icon/Icon.js';
-
-
+import iconMain from '../../images/Header/IconMain.svg';
+import icon from '../../images/Header/Icon.svg';
 
 function Header() {
   const { pathname } = useLocation();
 
-  function colorHeader() {
-    if (pathname === '/') {
-      return {background: 'rgb(7, 48, 66)'}
-    } else {
-      return {background: 'rgb(255, 255, 255)'}
-    }
-  }
-
   return (
-    <div className="Header" style={colorHeader()}>
-      <Icon />
+    <div className="Header" style={pathname === '/' ? {background: 'rgb(7, 48, 66)'} : {background: 'rgb(255, 255, 255)'}}>
+      <img className='Header__icon' src={pathname === '/' ? iconMain : icon} alt={'Иконка'}/>
       {pathname === '/' ? <NavigationMain /> : <Navigation />}
     </div>
   );

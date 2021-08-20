@@ -10,25 +10,36 @@
     background-color: rgb(0, 0, 0);
 }
 
-.NavTab__link {
+.NavTab__list {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.NavTab__item {
     margin-right: 40px;
+    list-style-type: none;
+}
+
+.NavTab__link {
     color: white;
 }
 
-.NavTab__link:hover {
+.NavTab__item:hover {
     opacity: 0.8;
 }
 
+.NavTab__item:last-child {
+    margin-right: 0;
+}
+
 @media (max-width: 767px) {
-    .NavTab__link {
+    .NavTab__item {
         margin-right: 24px;
     }
 
     .NavTab {
         font-size: 11px;
     }
-}
-
-.NavTab__link:last-child {
-    margin-right: 0;
 }
