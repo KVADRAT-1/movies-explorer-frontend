@@ -1,9 +1,10 @@
 import './Register.css';
+import Authorization from '../Authorization/Authorization.js'
 
 function Register() {
   return (
     <div className="Register">
-      → → → Register ← ← ←
+      <Authorization />
     </div>
   );
 }

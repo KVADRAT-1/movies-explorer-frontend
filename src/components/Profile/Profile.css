@@ -102,4 +102,12 @@
         font-size: 12px;
         line-height: 15px;
     }
+
+    .Profile__button-form {
+        margin: 379px 0 0 0;
+    }
+
+    .Profile__button-edit {
+        margin: 379px auto 0;
+    }
 }

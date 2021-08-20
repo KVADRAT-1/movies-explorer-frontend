@@ -1,9 +1,10 @@
 import './Login.css';
+import Authorization from '../Authorization/Authorization.js'
 
 function Login() {
   return (
     <div className="Login">
-      → → → Login ← ← ←
+      <Authorization/>
     </div>
   );
 }

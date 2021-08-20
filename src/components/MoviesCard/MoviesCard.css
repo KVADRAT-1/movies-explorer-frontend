@@ -21,13 +21,11 @@
     text-align: start;
 }
 
-.MoviesCard__buttom {
+.MoviesCard__like {
     width: 24px;
     height: 24px;
     margin: 10px 0 25px;
     padding: 0;
-    border: none;
-    background: url(../../images/MoviesCard/noLike.svg);
 }
 
 .MoviesCard__movie-time {

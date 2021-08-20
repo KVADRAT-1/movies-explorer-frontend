@@ -18,7 +18,7 @@ function App() {
   const { pathname } = useLocation();
   return (
     <div className='App'>
-      <Header />
+      {!(pathname === '/sign-in' || pathname === '/sign-up') && <Header />}
       <Switch>
         <Route exact path='/'>
           <ProtectedRoute 
@@ -44,14 +44,14 @@ function App() {
             loggedIn={loggedIn}
           />
         </Route>
-        <Route exact path='/signin'>
+        <Route exact path='/sign-up'>
           <Register />
         </Route>
-        <Route exact path='/signin'>
+        <Route exact path='/sign-in'>
           <Login />
         </Route>
       </Switch>
-      {!(pathname === '/profile' || pathname === '/signin' || pathname === '/signin') && <Footer />}
+      {!(pathname === '/profile' || pathname === '/sign-in' || pathname === '/sign-up') && <Footer />}
 		</div>
   );
 }

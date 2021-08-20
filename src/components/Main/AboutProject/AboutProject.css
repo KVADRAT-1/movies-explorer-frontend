@@ -48,6 +48,10 @@
     line-height: 17px;
 }
 
+.visual-info div {
+    padding-top: 9px;
+}
+
 .visual-info__one-week {
     background-color: #2BE080;
 }

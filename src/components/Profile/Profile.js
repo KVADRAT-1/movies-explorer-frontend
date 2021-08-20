@@ -1,6 +1,10 @@
+import { useState } from 'react';
 import './Profile.css';
 
+
 function Profile() {
+  const [name, setName] = useState('Виталий');
+  const [mail, setMail] = useState('pochta@yandex.ru');
 
   function switchEdit(e) {
     const profile = document.querySelector('.Profile')
@@ -25,17 +29,25 @@ function Profile() {
     }
   }
 
+  function nameChange(e) {
+  	setName(e.target.value);
+  }
+
+  function mailChange(e) {
+  	setMail(e.target.value);
+  }
+
   return (
     <div className='Profile'>
       <h2 className='Profile__title'>Привет, Виталий!</h2>
       <form className='Profile__form'>
         <div className='Profile__user-data'>
           <p className='Profile__text'>Имя</p>
-          <input className='Profile__input' readOnly="readonly"></input>
+          <input className='Profile__input' readOnly="readonly" value={name} onChange={nameChange} type='text'></input>
         </div>
         <div className='Profile__user-data'>
           <p className='Profile__text'>Почта</p>
-          <input className='Profile__input' readOnly="readonly"></input>
+          <input className='Profile__input' readOnly="readonly"  value={mail} onChange={mailChange} type='mail'></input>
         </div>
         <button className='Profile__button-form' type='button' onClick={switchEdit}>Сохранить</button>
       </form>

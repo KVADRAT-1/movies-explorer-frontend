@@ -18,12 +18,13 @@
     line-height: 18px;
 }
 
-.Navigation__item {
-    padding-top: 7px;
+.Navigation__button-Close {
+    display: none;
 }
 
-.Navigation__item:first-child {
-    margin-right: 20px;
+.Navigation__item {
+    padding-top: 7px;
+    margin-left: 20px;
 }
 
 .Navigation__item:last-child {
@@ -32,17 +33,14 @@
 }
 
 .Navigation__link {
+    padding: 0;
+    display: flex;
     color: black;
     text-decoration: none;
 }
 
-.Navigation__link:last-child {
-    padding: 0;
-    display: flex;
-}
-
 .Navigation__link:hover {
-    opacity: 0.6;
+    opacity: 0.8;
     cursor: pointer;
 }
 
@@ -50,41 +48,74 @@
     margin: 7px 17px 0 0;
 }
 
+.activePage {
+    border-bottom: solid 1px black;
+}
+
 @media (max-width: 1279px) {
     .Navigation {
+        z-index: 1;
         width: 44px;
         height: 44px;
         background: url(../../../images/Header/Navigation/iconMenu.svg);
     }
 
-    .Navigation:hover {
+    .Navigation__list {
+        z-index: 1;
+        top:0px;
+        right: 0px;
+        width: 520px;
+        height: 100%;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 22px;
+        flex-direction: column;
+        position: fixed;
+        background-color: rgb(255, 255, 255);
+    }
+
+    .Navigation__button-Close {
+        width: 33px;
+        height: 33px;
+        border: none;
+        background: no-repeat url(../../../images/Header/Navigation/iconClose.svg);
+        background-size: cover;
+        margin: 27px 27px 110px auto;
+        display: block;
+    }
+
+    .Navigation__button-Close {
         opacity: 0.8;
         cursor: pointer;
     }
 
-    .Navigation__item:first-child {
+    .Navigation__item {
         margin: 0 auto;
     }
-    
+
     .Navigation__item:last-child {
-        margin: 0 auto;
+        margin: 600px auto 0;
+    }
+
+    .Navigation__link:first-child {
+        margin-bottom: 22px;
     }
 
     .Navigation__text-profile {
-        margin-right: 3px;
-    }
-
-    .Navigation__list {
-        top: 15px;
-        right: 80px;
-        padding: 0 7px;
-        border-radius: 5px;
-        flex-direction: column;
-        position:absolute;
-        background-color: rgb(245, 245, 245);
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 16px;
     }
 
     .hide {
         display: none;
+    }
+}
+
+@media (max-width: 767px) {
+    .Navigation__list {
+        width: 100%;
     }
 }

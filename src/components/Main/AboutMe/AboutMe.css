@@ -64,8 +64,7 @@
 .AboutMe__photo {
     order: 2;
     width: 270px;
-    background: no-repeat center url(https://avatarko.ru/img/kartinka/33/multfilm_lyagushka_32117.jpg);
-    background-size: cover;
+    object-fit: cover;
     border-radius: 10px;
 }
 
