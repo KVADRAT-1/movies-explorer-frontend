@@ -11,6 +11,7 @@ import SavedMovies from '../SavedMovies/SavedMovies.js';
 import Register from '../Register/Register';
 import Login from '../Login/Login.js';
 import Profile from '../Profile/Profile.js';
+import Error from '../Error/Error.js';
 
 const loggedIn = true;
 
@@ -18,8 +19,11 @@ function App() {
   const { pathname } = useLocation();
   return (
     <div className='App'>
-      {!(pathname === '/sign-in' || pathname === '/sign-up') && <Header />}
+      {!(pathname === '/sign-in' || pathname === '/sign-up' || pathname === '/error') && <Header />}
       <Switch>
+        <Route exact path='/error'>
+          <Error />
+        </Route>
         <Route exact path='/'>
           <ProtectedRoute 
             component={Main}
@@ -51,7 +55,7 @@ function App() {
           <Login />
         </Route>
       </Switch>
-      {!(pathname === '/profile' || pathname === '/sign-in' || pathname === '/sign-up') && <Footer />}
+      {!(pathname === '/profile' || pathname === '/sign-in' || pathname === '/sign-up' || pathname === '/error') && <Footer />}
 		</div>
   );
 }
