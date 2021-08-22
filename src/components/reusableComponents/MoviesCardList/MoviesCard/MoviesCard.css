@@ -1,19 +1,15 @@
 .MoviesCard {
     display: grid;
-    grid-template-columns: 1fr 24px;
-}
-
-.MoviesCard__photo {
-    width: 100%;
-    height: 151px;
-    grid-column-start: 1;
-    grid-column-end: 3;
-    background: no-repeat url(../../../../images/trash/165083-retrovejv-legkovyye_avtomobili-audi_avant_2-synthwave-voda-1920x1080.jpg);
-    background-size: cover;
+    grid-template-columns: 1fr 38px;
+    grid-template-rows: 1fr 203px;
+    width: 364px;
+    height: 271px;
+    background: #FDFDFD;
+    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
 }
 
 .MoviesCard__text {
-    margin: 14px 0 29px;
+    margin: 14px 0 0 14px;
     font-style: normal;
     font-weight: 500;
     font-size: 13px;
@@ -21,42 +17,52 @@
     text-align: start;
 }
 
-.MoviesCard__like {
-    width: 24px;
-    height: 24px;
-    margin: 10px 0 25px;
-    padding: 0;
-}
-
 .MoviesCard__movie-time {
-    margin: 0;
-    padding-top: 6px;
-    grid-column-start: 1;
-    grid-column-end: 3;
+    margin: 9px 0 14px 14px;
+    padding: 0;
     font-style: normal;
     font-weight: normal;
     font-size: 11px;
     line-height: 13px;
     text-align: start;
-    border-top: solid 1px #E8E8E8;
     color: #A0A0A0;
 }
 
+.MoviesCard__like {
+    width: 24px;
+    height: 24px;
+    margin: 19px 14px 0 0;
+    padding: 0;
+}
+
+.MoviesCard__like {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.MoviesCard__photo {
+    grid-column-start: -3;
+    grid-column-end: -1;
+    background: no-repeat url(../../../../images/trash/asd.jpg);
+    background-size: cover;
+}
+
 @media (max-width: 1279px) {
-    .MoviesCard__photo {
+    .MoviesCard {
+        grid-template-rows: 1fr 190px;
         width: 339px;
-        height: 190px;
+        height: 258px;
     }
 }
 
 @media (max-width: 767px) {
-    .MoviesCard__photo {
+    .MoviesCard {
+        grid-template-rows: 1fr 168px;
         width: 300px;
-        height: 168px;
+        height: 236px;
     }
 
     .MoviesCard__text {
-        margin: 15px 0 29px;
         font-size: 12px;
         line-height: 15px;
     }

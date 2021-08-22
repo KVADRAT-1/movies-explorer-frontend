@@ -21,7 +21,6 @@ function MoviesCardList() {
         <li className="MoviesCardList__item"><MoviesCard/></li>
         <li className="MoviesCardList__item"><MoviesCard/></li>
         <li className="MoviesCardList__item"><MoviesCard/></li>
-        <li className="MoviesCardList__item"><MoviesCard/></li>
       </ul>
       <button className="MoviesCardList__button">Ещё</button>
     </div>

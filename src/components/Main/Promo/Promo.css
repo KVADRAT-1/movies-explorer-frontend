@@ -1,20 +1,25 @@
 .Promo {
-    height: 524px;
+    margin: 20px 40px 0;
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
-    background: url('../../../images/Promo/Promo__image.svg') no-repeat center;
-    background-size: 320px;
-    color: white;
-    background-color: rgb(7, 48, 66);
+    border-radius: 10px;
+    background-color: #F5F5F5;
 }
 
 .Promo__title {
     max-width: 730px;
-    margin: 0;
+    margin: 160px auto 151px;
     font-style: normal;
-	font-weight: 400;
+    font-weight: 400;
 	font-size: 50px;
+}
+
+@media (max-width: 1279px) {
+    .Promo__title {
+        margin: 350px auto 314px;
+    }
 }
 
 @media (max-width: 767px) {
@@ -23,6 +28,7 @@
     }
 
     .Promo__title {
+        margin: 220px auto 212px;
         font-style: normal;
         font-weight: 400;
         font-size: 31px;

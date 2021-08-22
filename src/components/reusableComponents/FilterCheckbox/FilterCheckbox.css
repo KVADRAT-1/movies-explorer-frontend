@@ -1,10 +1,10 @@
 .FilterCheckbox {
-    display: grid;
-    grid-template-columns: 1fr 36px;
-    grid-gap: 14px;
+    display: flex;
+    justify-content: center;
 }
 
 .FilterCheckbox__text {
+    margin: 0 12px 0 0;
     font-style: normal;
     font-weight: normal;
     font-size: 13px;
@@ -14,8 +14,6 @@
 .FilterCheckbox__button {
     width: 36px;
     height: 20px;
-    margin-top: 13px;
-    padding: 0;
 }
 
 .FilterCheckbox__button:hover {
@@ -24,15 +22,11 @@
 }
 
 @media (max-width: 1279px) {
-    .FilterCheckbox {
-        margin: 0 auto;
-        grid-template-columns: 1fr 36px;
-        grid-gap: 12px;
-    }
+
 }
 
 @media (max-width: 767px) {
-    .FilterCheckbox {
-        grid-gap: 13px;
+    .FilterCheckbox__text {
+        margin: 0 13px 0 0;
     }
 }

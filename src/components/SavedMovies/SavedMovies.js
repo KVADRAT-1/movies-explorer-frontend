@@ -1,12 +1,14 @@
 import './SavedMovies.css';
 
 import SearchForm from '../reusableComponents/SearchForm/SearchForm.js';
+import FilterCheckbox from '../reusableComponents/FilterCheckbox/FilterCheckbox.js';
 import MoviesCardList from '../reusableComponents/MoviesCardList/MoviesCardList.js';
 
 function SavedMovies() {
   return (
     <div className="SavedMovies">
       <SearchForm />
+      <FilterCheckbox />
       <MoviesCardList />
     </div>
   );

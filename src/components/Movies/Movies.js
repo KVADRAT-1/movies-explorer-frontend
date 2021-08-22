@@ -1,6 +1,7 @@
 import './Movies.css';
 
 import SearchForm from '../reusableComponents/SearchForm/SearchForm.js';
+import FilterCheckbox from '../reusableComponents/FilterCheckbox/FilterCheckbox.js';
 import Preloader from './Preloader/Preloader.js';
 import MoviesCardList from '../reusableComponents/MoviesCardList/MoviesCardList.js';
 
@@ -9,8 +10,9 @@ function Movies() {
   return (
     <div className="Movies">
       <SearchForm />
-      <Preloader />
+      <FilterCheckbox />
       <MoviesCardList />
+      <Preloader />
     </div>
   );
 }
