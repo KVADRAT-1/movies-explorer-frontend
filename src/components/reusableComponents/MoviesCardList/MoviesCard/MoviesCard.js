@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom';
 import iconNotfavoriteActive from '../../../../images/MoviesCard/MoviesCard__icon-not-favoriteActive.svg';
 import iconFavoriteActive from '../../../../images/MoviesCard/MoviesCard__icon-favoriteActive.svg';
 import iconDeleteFavoriteActive from '../../../../images/MoviesCard/MoviesCard__icon-delete-favoriteActive.svg';
+import photo from '../../../../images/trash/asd.jpg';
 
 function MoviesCard() {
   const { pathname } = useLocation();
@@ -34,7 +35,7 @@ function MoviesCard() {
           <p className="MoviesCard__movie-time">1ч42м</p>
         </div>
         <img className='MoviesCard__like' src={pathname === '/movies' ? iconNotfavoriteActive : iconDeleteFavoriteActive} onClick={clickIcon} alt={'like'}/>
-        <div className="MoviesCard__photo"></div>
+        <img className="MoviesCard__photo" src={photo} alt={'photoMovie'}/>
     </div>
   );
 }
