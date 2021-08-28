@@ -1,17 +1,38 @@
 import './Movies.css';
 
+import { useState } from 'react'
+
 import SearchForm from '../reusableComponents/SearchForm/SearchForm.js';
 import FilterCheckbox from '../reusableComponents/FilterCheckbox/FilterCheckbox.js';
 import Preloader from './Preloader/Preloader.js';
 import MoviesCardList from '../reusableComponents/MoviesCardList/MoviesCardList.js';
 
 
-function Movies() {
+function Movies({movies}) {
+  const [input, setInput] = useState('');
+  const [submit, setSubmit] = useState(false);
+
+  function onChange(e) {
+    const { value }= e.target
+    setInput(value)
+  }
+  console.log(input)
+  
+  function onSubmit(e) {
+    e.preventDefault();
+    setSubmit(true)
+  }
+  
   return (
     <div className="Movies">
-      <SearchForm />
+      <SearchForm 
+        onChange={onChange}
+        onSubmit={onSubmit}
+      />
       <FilterCheckbox />
-      <MoviesCardList />
+      {submit && <MoviesCardList 
+      movies={movies}
+      />}
       <Preloader />
     </div>
   );

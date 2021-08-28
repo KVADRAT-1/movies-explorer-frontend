@@ -1,5 +1,5 @@
 import './App.css';
-import { React } from 'react';
+import { React, useEffect, useState } from 'react';
 import { useLocation, Switch, Route } from 'react-router-dom';
 
 import ProtectedRoute from '../reusableComponents/ProtectedRoute.js';
@@ -13,10 +13,20 @@ import Login from '../Login/Login.js';
 import Profile from '../Profile/Profile.js';
 import Error from '../Error/Error.js';
 
+import { getMovies } from '../../utils/MoviesApi.js'
+
 const loggedIn = true;
 
 function App() {
   const { pathname } = useLocation();
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    getMovies().then(response => {
+      setMovies(response)
+    })
+	}, []);
+
   return (
     <div className='App'>
       {!(pathname === '/sign-in' || pathname === '/sign-up' || pathname === '/error') && <Header />}
@@ -34,12 +44,14 @@ function App() {
           <ProtectedRoute 
             component={Movies}
             loggedIn={loggedIn}
+            movies={movies}
           />
         </Route>
         <Route exact path='/saved-movies'>
           <ProtectedRoute 
             component={SavedMovies}
             loggedIn={loggedIn}
+            movies={movies}
           />
         </Route>
         <Route exact path='/profile'>
