@@ -14,18 +14,31 @@ import Profile from '../Profile/Profile.js';
 import Error from '../Error/Error.js';
 
 import { getMovies } from '../../utils/MoviesApi.js'
-
-const loggedIn = true;
+import { register, authorization, tokenValidity, updatesProfile } from '../../utils/MainApi.js'
 
 function App() {
   const { pathname } = useLocation();
   const [movies, setMovies] = useState([]);
+  const [loggedIn, setLoggedIn] = useState(true);
+
 
   useEffect(() => {
     getMovies().then(response => {
       setMovies(response)
     })
 	}, []);
+
+  function registerUser(userRegistrationData) {
+    register(userRegistrationData).then(response => {
+      console.log(response)
+    })
+  }
+
+  function loginUser(userLoginData) {
+    authorization(userLoginData).then(response => {
+      console.log(response)
+    })
+  }
 
   return (
     <div className='App'>
@@ -61,10 +74,14 @@ function App() {
           />
         </Route>
         <Route exact path='/sign-up'>
-          <Register />
+          <Register 
+            registerUser={registerUser}
+          />
         </Route>
         <Route exact path='/sign-in'>
-          <Login />
+          <Login 
+            loginUser={loginUser}
+          />
         </Route>
       </Switch>
       {!(pathname === '/profile' || pathname === '/sign-in' || pathname === '/sign-up' || pathname === '/error') && <Footer />}

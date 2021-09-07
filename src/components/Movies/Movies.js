@@ -4,9 +4,8 @@ import { useState } from 'react'
 
 import SearchForm from '../reusableComponents/SearchForm/SearchForm.js';
 import FilterCheckbox from '../reusableComponents/FilterCheckbox/FilterCheckbox.js';
-import Preloader from './Preloader/Preloader.js';
+import Preloader from '../reusableComponents/Preloader/Preloader.js';
 import MoviesCardList from '../reusableComponents/MoviesCardList/MoviesCardList.js';
-
 
 function Movies({movies}) {
   const [input, setInput] = useState('');
@@ -33,7 +32,8 @@ function Movies({movies}) {
       {submit && <MoviesCardList 
       movies={movies}
       />}
-      <Preloader />
+      {true && <Preloader/>}
+      {/* {false ? <p>«Ничего не найдено»</p> : <p>«Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз»</p>} */}
     </div>
   );
 }

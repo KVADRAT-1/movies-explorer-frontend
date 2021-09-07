@@ -2,31 +2,31 @@ import './Authorization.css';
 import { Link, useLocation } from 'react-router-dom';
 import icon from '../../../images/reusableImages/logo.svg';
 
-function Authorization() {
+function Authorization({onChangeName, onChangeMail, onChangePassword, onSubmit}) {
     const { pathname } = useLocation();
 
   return (
     <div className='Authorization'>
         <img className='Authorization__icon' src={icon} alt={'icon'}/>
         <h2 className='Authorization__title'>{pathname === '/sign-in' ? 'Рады видеть!' : 'Добро пожаловать!'}</h2>
-        <form className='Authorization__form'>
+        <form className='Authorization__form' onSubmit={onSubmit}>
             {pathname === '/sign-up' && 
                 <>
                     <p className='Authorization__text-input'>Имя</p>
                     <div className='Authorization__section-input'>
-                        <input className='Authorization__input' type='text' required></input>
+                        <input className='Authorization__input' type='text' required onChange={onChangeName}></input>
                         <span className='Authorization__input-error hide'>Что-то пошло не так...</span>
                     </div>
                 </>
             }
             <p className='Authorization__text-input'>E-mail</p>
             <div className='Authorization__section-input'>
-                <input className='Authorization__input' type='mail' required></input>
+                <input className='Authorization__input' type='mail' required onChange={onChangeMail}></input>
                 <span className='Authorization__input-error hide'>Что-то пошло не так...</span>
             </div>
             <p className='Authorization__text-input'>Пароль</p>
             <div className='Authorization__section-input'>
-                <input className='Authorization__input' type='password' required></input>
+                <input className='Authorization__input' type='password' required onChange={onChangePassword}></input>
                 <span className='Authorization__input-error hide'>Что-то пошло не так...</span>
             </div>
             <button className='Authorization__button'>{pathname === '/sign-in' ? 'Войти' : 'Зарегистрироваться'}</button>

@@ -4,12 +4,14 @@ import SearchForm from '../reusableComponents/SearchForm/SearchForm.js';
 import FilterCheckbox from '../reusableComponents/FilterCheckbox/FilterCheckbox.js';
 import MoviesCardList from '../reusableComponents/MoviesCardList/MoviesCardList.js';
 
-function SavedMovies() {
+function SavedMovies({movies}) {
   return (
     <div className="SavedMovies">
       <SearchForm />
       <FilterCheckbox />
-      <MoviesCardList />
+      <MoviesCardList 
+      movies={movies}
+      />
     </div>
   );
 }

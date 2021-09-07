@@ -13,6 +13,7 @@ function SearchForm({onSubmit, onChange}) {
     e.target.placeholder = '';
   };
 
+
   return (
     <div className="SearchForm" onSubmit={onSubmit}>
       <form className='SearchForm__form'>
