@@ -7,20 +7,18 @@ import iconNotfavoriteActive from '../../../../images/MoviesCard/MoviesCard__ico
 import iconFavoriteActive from '../../../../images/MoviesCard/MoviesCard__icon-favoriteActive.svg';
 import iconDeleteFavoriteActive from '../../../../images/MoviesCard/MoviesCard__icon-delete-favoriteActive.svg';
 
-function MoviesCard({movie, moviesLength, setMoviesLength}) {
+function MoviesCard({movie, moviesLength, setMoviesLength, addSaveMovies, deleteSaveMovies, deleteMovies}) {
   const { pathname } = useLocation();
 
   const [favoriteActive, setFavoriteActive] = useState(false);
-  
-  function deleteMovies() {
-    console.log('deleteMovies')
-  }
 
   function clickIcon(e) {
     if (pathname === '/movies' && favoriteActive === false) {
+      addSaveMovies(movie)
       setFavoriteActive(!favoriteActive)
       e.target.src = iconFavoriteActive
     } else if (pathname === '/movies' && favoriteActive === true) {
+      deleteSaveMovies(movie)
       setFavoriteActive(!favoriteActive)
       e.target.src = iconNotfavoriteActive
     } else if (pathname === '/saved-movies') {

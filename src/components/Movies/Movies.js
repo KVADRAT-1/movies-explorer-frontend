@@ -7,32 +7,36 @@ import FilterCheckbox from '../reusableComponents/FilterCheckbox/FilterCheckbox.
 import Preloader from '../reusableComponents/Preloader/Preloader.js';
 import MoviesCardList from '../reusableComponents/MoviesCardList/MoviesCardList.js';
 
-function Movies({movies}) {
-  const [input, setInput] = useState('');
+function Movies({movies, moviesRequest, addSaveMovies, deleteSaveMovies}) {
+  const [inputText, setInputText] = useState('');
   const [submit, setSubmit] = useState(false);
-
-  function onChange(e) {
-    const { value }= e.target
-    setInput(value)
-  }
-  console.log(input)
+  const [preloader, setPreloader] = useState(false)
   
   function onSubmit(e) {
+    console.log(e)
     e.preventDefault();
     setSubmit(true)
+    if(inputText.length > 0) {
+      moviesRequest()
+      setPreloader(true)
+    }
   }
   
   return (
     <div className="Movies">
-      <SearchForm 
-        onChange={onChange}
+      <SearchForm
         onSubmit={onSubmit}
+        submit={submit}
+        setInputText={setInputText}
+        inputText={inputText}
       />
       <FilterCheckbox />
-      {submit && <MoviesCardList 
+      {movies.length !== 0 && <MoviesCardList
+      addSaveMovies={addSaveMovies} 
       movies={movies}
+      deleteSaveMovies={deleteSaveMovies}
       />}
-      {true && <Preloader/>}
+      {(movies.length === 0 && preloader) && <Preloader/>}
       {/* {false ? <p>«Ничего не найдено»</p> : <p>«Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз»</p>} */}
     </div>
   );

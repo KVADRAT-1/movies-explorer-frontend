@@ -1,5 +1,5 @@
 import './App.css';
-import { React, useEffect, useState } from 'react';
+import { React, useState } from 'react';
 import { useLocation, Switch, Route } from 'react-router-dom';
 
 import ProtectedRoute from '../reusableComponents/ProtectedRoute.js';
@@ -20,13 +20,31 @@ function App() {
   const { pathname } = useLocation();
   const [movies, setMovies] = useState([]);
   const [loggedIn, setLoggedIn] = useState(true);
+  const [saveMovies, setSaveMovies] = useState([{
+    duration: 61,
+    id: 4,
+    image: "https://api.nomoreparties.co/uploads/zagruzhennoe_113f557116.jpeg",
+    nameRU: "Bassweight",
+    trailerLink: "https://www.youtube.com/watch?v=dgSyC6me-jQ",
+  }])
 
+  function addSaveMovies(movie) {
+    console.log('addSaveMovies')
+  }
 
-  useEffect(() => {
+  function deleteSaveMovies(movie) {
+    console.log('deleteSaveMovies')
+  }
+
+  function deleteMovies(movie) {
+    console.log('deleteMovies')
+  }
+
+  function moviesRequest() {
     getMovies().then(response => {
       setMovies(response)
     })
-	}, []);
+  }
 
   function registerUser(userRegistrationData) {
     register(userRegistrationData).then(response => {
@@ -56,15 +74,19 @@ function App() {
         <Route exact path='/movies'>
           <ProtectedRoute 
             component={Movies}
+            moviesRequest={moviesRequest}
             loggedIn={loggedIn}
             movies={movies}
+            addSaveMovies={addSaveMovies}
+            deleteSaveMovies={deleteSaveMovies}
           />
         </Route>
         <Route exact path='/saved-movies'>
           <ProtectedRoute 
             component={SavedMovies}
             loggedIn={loggedIn}
-            movies={movies}
+            saveMovies={saveMovies}
+            deleteMovies={deleteMovies}
           />
         </Route>
         <Route exact path='/profile'>

@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import MoviesCard from './MoviesCard/MoviesCard.js';
 
-function MoviesCardList({movies}) {
+function MoviesCardList({movies, addSaveMovies, deleteSaveMovies, deleteMovies}) {
   const [moviesLength, setMoviesLength] = useState(12);
 
   function addMoviesLength() {
@@ -26,6 +26,9 @@ function MoviesCardList({movies}) {
                 movie={movie}
                 moviesLength={moviesLength}
                 setMoviesLength={setMoviesLength}
+                addSaveMovies={addSaveMovies}
+                deleteSaveMovies={deleteSaveMovies}
+                deleteMovies={deleteMovies}
               />
         ))}
       </ul>
