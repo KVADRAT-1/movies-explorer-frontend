@@ -7,7 +7,7 @@ import Authorization from '../reusableComponents/Authorization/Authorization.js'
 function Register({registerUser}) {
   const [userRegistrationData, setUserRegistrationData] = useState({
     name: '',
-    mail: '',
+    email: '',
     password: '',
   });
 
@@ -15,7 +15,7 @@ function Register({registerUser}) {
     const { value } = e.target
     setUserRegistrationData({
       name: value,
-      mail: userRegistrationData.mail,
+      email: userRegistrationData.email,
       password: userRegistrationData.password,
     })
   }
@@ -24,7 +24,7 @@ function Register({registerUser}) {
     const { value } = e.target
     setUserRegistrationData({
       name: userRegistrationData.name,
-      mail: value,
+      email: value,
       password: userRegistrationData.password,
     })
   }
@@ -33,7 +33,7 @@ function Register({registerUser}) {
     const { value } = e.target
     setUserRegistrationData({
       name: userRegistrationData.name,
-      mail: userRegistrationData.mail,
+      email: userRegistrationData.email,
       password: value,
     })
   }

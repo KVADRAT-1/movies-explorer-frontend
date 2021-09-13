@@ -1,6 +1,6 @@
 import './App.css';
-import { React, useState } from 'react';
-import { useLocation, Switch, Route } from 'react-router-dom';
+import { React, useState, useEffect } from 'react';
+import { useLocation, Switch, Route, useHistory } from 'react-router-dom';
 
 import ProtectedRoute from '../reusableComponents/ProtectedRoute.js';
 import Header from '../Header/Header.js';
@@ -19,7 +19,7 @@ import { register, authorization, tokenValidity, updatesProfile } from '../../ut
 function App() {
   const { pathname } = useLocation();
   const [movies, setMovies] = useState([]);
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [saveMovies, setSaveMovies] = useState([{
     duration: 61,
     id: 4,
@@ -27,6 +27,13 @@ function App() {
     nameRU: "Bassweight",
     trailerLink: "https://www.youtube.com/watch?v=dgSyC6me-jQ",
   }])
+  const [userData, setUserData] = useState({
+    name: '',
+    email: '',
+    _id: '',
+  });
+
+  const history = useHistory();
 
   function addSaveMovies(movie) {
     console.log('addSaveMovies')
@@ -47,15 +54,57 @@ function App() {
   }
 
   function registerUser(userRegistrationData) {
-    register(userRegistrationData).then(response => {
-      console.log(response)
+    register(userRegistrationData).then(data => {
+      loginUser({email: data.email, password: userRegistrationData.password})
     })
   }
 
   function loginUser(userLoginData) {
-    authorization(userLoginData).then(response => {
-      console.log(response)
+    authorization(userLoginData).then(res => {
+      localStorage.setItem('jwt', res.token);
+      checkToken()
     })
+  }
+
+  function changeProfile(newUserData) {
+    const jwt = localStorage.getItem('jwt');
+    updatesProfile({name: newUserData.name, email: newUserData.email, token: jwt}).then(data => {
+      setUserData({
+        name: data.user.name,
+        email: data.user.email,
+        _id: data.user._id,
+      });
+    })
+  }
+
+  function checkToken() {
+		const jwt = localStorage.getItem('jwt');
+		if (jwt) {
+      tokenValidity(jwt)
+				.then(res => {
+					const { name, email, _id } = res.user;
+					setUserData({
+            name: name,
+						email: email,
+						_id: _id,
+					});
+          toSwitchLoggedIn()
+          history.push('/movies');
+				})
+		}
+	}
+
+  function toSwitchLoggedIn() {
+    setLoggedIn(!loggedIn)
+  }
+
+  useEffect(() => {
+		checkToken()
+	}, []);
+
+  function logOutOfProfile() {
+    localStorage.removeItem('jwt');
+    history.push('/sign-in');
   }
 
   return (
@@ -93,6 +142,9 @@ function App() {
           <ProtectedRoute 
             component={Profile}
             loggedIn={loggedIn}
+            userData={userData}
+            logOutOfProfile={logOutOfProfile}
+            changeProfile={changeProfile}
           />
         </Route>
         <Route exact path='/sign-up'>

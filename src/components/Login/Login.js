@@ -6,14 +6,14 @@ import Authorization from '../reusableComponents/Authorization/Authorization.js'
 
 function Login({loginUser}) {
   const [userLoginData, setUserLoginData] = useState({
-    mail: '',
+    email: '',
     password: '',
   });
 
   function onChangeMail(e) {
     const { value } = e.target
     setUserLoginData({
-      mail: value,
+      email: value,
       password: userLoginData.password,
     })
   }
@@ -21,7 +21,7 @@ function Login({loginUser}) {
   function onChangePassword(e) {
     const { value } = e.target
     setUserLoginData({
-      mail: userLoginData.mail,
+      email: userLoginData.email,
       password: value,
     })
   }

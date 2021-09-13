@@ -1,11 +1,10 @@
-import { useState } from 'react';
 import './Profile.css';
 
+import { useState } from 'react';
 
-function Profile() {
-  const [name, setName] = useState('Виталий');
-  const [mail, setMail] = useState('pochta@yandex.ru');
-
+function Profile({userData, logOutOfProfile, changeProfile}) {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
   function switchEdit(e) {
     const profile = document.querySelector('.Profile')
     const buttonForm = profile.querySelector('.Profile__button-form')
@@ -30,30 +29,38 @@ function Profile() {
   }
 
   function nameChange(e) {
-  	setName(e.target.value);
+    setName(e.target.value)
   }
 
   function mailChange(e) {
-  	setMail(e.target.value);
+  	setEmail(e.target.value)
+  }
+
+  function onSubmit(e) {
+    e.preventDefault();
+    if (name === '' && email === '') { return }
+    changeProfile({name: name === '' ? userData.name : name, email: email === '' ? userData.email : email})
+    setName('');
+    setEmail('');
   }
 
   return (
     <div className='Profile'>
       <h2 className='Profile__title'>Привет, Виталий!</h2>
-      <form className='Profile__form'>
+      <form className='Profile__form' onSubmit={onSubmit}>
         <div className='Profile__user-data'>
           <p className='Profile__text'>Имя</p>
-          <input className='Profile__input' readOnly="readonly" value={name} onChange={nameChange} type='text'></input>
+          <input className='Profile__input' value={name === '' ? userData.name : name} onChange={nameChange} readOnly="readonly" type='text' minLength='2' maxLength='30' required></input>
         </div>
         <div className='Profile__user-data'>
           <p className='Profile__text'>Почта</p>
-          <input className='Profile__input' readOnly="readonly"  value={mail} onChange={mailChange} type='mail'></input>
+          <input className='Profile__input' value={email === '' ? userData.email : email} onChange={mailChange} readOnly="readonly" type='mail' required></input>
         </div>
-        <button className='Profile__button-form' type='button' onClick={switchEdit}>Сохранить</button>
+        <button className='Profile__button-form' onClick={switchEdit}>Сохранить</button>
       </form>
       <div className='Profile__buttons'>
         <button className='Profile__button-edit' onClick={switchEdit}>Редактировать</button>
-        <button className='Profile__button-output'>Выйти из аккаунта</button>
+        <button className='Profile__button-output' onClick={logOutOfProfile}>Выйти из аккаунта</button>
       </div>
     </div>
   );

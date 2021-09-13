@@ -7,7 +7,7 @@ const checkResponse = res => {
 
 export const BASE_URL = 'http://localhost:3000';// http://api.diploma.kostin.nomoredomains.club
 
-export const register = (userRegistrationData) => {
+export const register = userRegistrationData => {
 	return fetch(`${BASE_URL}/signup`, {
 		method: 'POST',
 		headers: {
@@ -15,14 +15,14 @@ export const register = (userRegistrationData) => {
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify({
-            name: `${userRegistrationData.name}`,
-            email: `${userRegistrationData.email}`,
+			email: `${userRegistrationData.email}`,
 			password: `${userRegistrationData.password}`,
+			name: `${userRegistrationData.name}`
 		}),
 	}).then(checkResponse);
 };
 
-export const authorization = (userLoginData) => {
+export const authorization = userLoginData => {
 	return fetch(`${BASE_URL}/signin`, {
 		method: 'POST',
 		headers: {
@@ -47,17 +47,17 @@ export const tokenValidity = token => {
 	}).then(checkResponse);
 };
 
-export const updatesProfile = (email, password, userId, token) => {
-	return fetch(`${BASE_URL}/users/${userId ? userId : 'me'}`, {
+export const updatesProfile = newUserData => {
+	return fetch(`${BASE_URL}/users/me`, {
 		method: 'PATCH',
 		headers: {
 			Accept: '*/*',
 			'Content-Type': 'application/json',
-			Authorization: `Bearer ${token}`,
+			Authorization: `Bearer ${newUserData.token}`,
 		},
         body: JSON.stringify({
-			email: `${email}`,
-			password: `${password}`,
+			name: `${newUserData.name}`,
+			email: `${newUserData.email}`,
 		}),
 	}).then(checkResponse);
 };
