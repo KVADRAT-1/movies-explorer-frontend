@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 function NavigationMain() {
   return (
     <div className="NavigationMain">
-      <Link className='NavigationMain__button-register' to='/sign-in' href="./Navigation.css">Регистрация</Link>
-      <Link className='NavigationMain__button-open' to='/sign-up' href="./Navigation.css">Войти</Link>
+      <Link className='NavigationMain__button-register' to='/sign-up' href="./Navigation.css">Регистрация</Link>
+      <Link className='NavigationMain__button-open' to='/sign-in' href="./Navigation.css">Войти</Link>
     </div>
   );
 }

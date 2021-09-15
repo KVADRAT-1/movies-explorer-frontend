@@ -23,7 +23,7 @@
     line-height: 13px;
     display: flex;
     justify-content: space-between;
-    
+    position: relative;
 }
 
 .Profile__user-data:first-child {
@@ -43,6 +43,18 @@
     cursor: default;
 }
 
+.Profile__input-error {
+    right: 0;
+    top: calc(100% + 5px);
+    z-index: 1;
+    position: absolute;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 12px;
+    color: red;
+}
+
 .Profile__button-form {
     width: 100%;
     height: 45px;
@@ -55,7 +67,6 @@
     border-radius: 3px;
     background-color: #FF6838;
     color: white;
-    display: none;
 }
 
 .Profile__button-form:hover {

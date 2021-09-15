@@ -104,7 +104,7 @@ function App() {
 
   function logOutOfProfile() {
     localStorage.removeItem('jwt');
-    history.push('/sign-in');
+    history.push('/');
   }
 
   return (
@@ -115,10 +115,7 @@ function App() {
           <Error />
         </Route>
         <Route exact path='/'>
-          <ProtectedRoute 
-            component={Main}
-            loggedIn={loggedIn}
-          />
+          <Main />
         </Route>
         <Route exact path='/movies'>
           <ProtectedRoute 
