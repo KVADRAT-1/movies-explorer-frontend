@@ -6,20 +6,18 @@ import SearchForm from '../reusableComponents/SearchForm/SearchForm.js';
 import FilterCheckbox from '../reusableComponents/FilterCheckbox/FilterCheckbox.js';
 import MoviesCardList from '../reusableComponents/MoviesCardList/MoviesCardList.js';
 
-function SavedMovies({saveMovies, deleteMovies}) {
+function SavedMovies({saveMovies, delMovie, switchFilterSaveMovies, filterSaveMovies}) {
   const [inputText, setInputText] = useState('');
   const [submit, setSubmit] = useState(false);
   const [preloader, setPreloader] = useState(false)
   
   function onSubmit(e) {
-    console.log(e)
     e.preventDefault();
     setSubmit(true)
     if(inputText.length > 0) {
       setPreloader(true)
     }
   }
-
 
   return (
     <div className="SavedMovies">
@@ -29,10 +27,14 @@ function SavedMovies({saveMovies, deleteMovies}) {
         setInputText={setInputText}
         inputText={inputText}
       />
-      <FilterCheckbox />
+      <FilterCheckbox 
+        switchFilter={switchFilterSaveMovies}
+        filter={filterSaveMovies}
+      />
       {saveMovies.length !== 0 && <MoviesCardList 
       movies={saveMovies}
-      deleteMovies={deleteMovies}
+      delMovie={delMovie}
+      filter={filterSaveMovies}
       />}
     </div>
   );

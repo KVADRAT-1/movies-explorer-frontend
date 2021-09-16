@@ -7,13 +7,12 @@ import FilterCheckbox from '../reusableComponents/FilterCheckbox/FilterCheckbox.
 import Preloader from '../reusableComponents/Preloader/Preloader.js';
 import MoviesCardList from '../reusableComponents/MoviesCardList/MoviesCardList.js';
 
-function Movies({movies, moviesRequest, addSaveMovies, deleteSaveMovies}) {
+function Movies({movies, moviesRequest, addSaveMovies, saveMoviesId, delMovie, switchFilterMovies, filterMovies}) {
   const [inputText, setInputText] = useState('');
   const [submit, setSubmit] = useState(false);
   const [preloader, setPreloader] = useState(false)
   
   function onSubmit(e) {
-    console.log(e)
     e.preventDefault();
     setSubmit(true)
     if(inputText.length > 0) {
@@ -30,11 +29,16 @@ function Movies({movies, moviesRequest, addSaveMovies, deleteSaveMovies}) {
         setInputText={setInputText}
         inputText={inputText}
       />
-      <FilterCheckbox />
+      <FilterCheckbox 
+        switchFilter={switchFilterMovies}
+        filter={filterMovies}
+      />
       {movies.length !== 0 && <MoviesCardList
       addSaveMovies={addSaveMovies} 
       movies={movies}
-      deleteSaveMovies={deleteSaveMovies}
+      saveMoviesId={saveMoviesId}
+      delMovie={delMovie}
+      filter={filterMovies}
       />}
       {(movies.length === 0 && preloader) && <Preloader/>}
       {/* {false ? <p>«Ничего не найдено»</p> : <p>«Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз»</p>} */}

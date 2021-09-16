@@ -9,7 +9,7 @@ export const getMovies = () => {
         let movies = [];
         for(let i in response) {
           movies[i] =  {
-                id: response[i].id,
+                _id: response[i].id,
                 nameRU: response[i].nameRU,
                 image: `https://api.nomoreparties.co${response[i].image.url}`,
                 trailerLink: response[i].trailerLink,

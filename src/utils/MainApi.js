@@ -61,3 +61,50 @@ export const updatesProfile = newUserData => {
 		}),
 	}).then(checkResponse);
 };
+
+export const createMovie = (movie, userId, jwt) => {
+	return fetch(`${BASE_URL}/movies`, {
+		method: 'POST',
+		headers: {
+			Accept: '*/*',
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${jwt}`,
+		},
+        body: JSON.stringify({
+			"country": "null",
+			"director": "null",
+			"duration": `${movie.duration}`,
+			"year": "null",
+			"description": "null",
+			"image": `${movie.image}`,
+			"trailer": `${movie.trailerLink}`,
+			"thumbnail": `${movie.image}`,
+			"owner": `${userId}`,
+			"movieId": `${movie._id}`,
+			"nameRU": `${movie.nameRU}`,
+			"nameEN": "null"
+		}),
+	}).then(checkResponse);
+};
+
+export const returnMovies = (jwt) => {
+	return fetch(`${BASE_URL}/movies`, {
+		method: 'GET',
+		headers: {
+			Accept: '*/*',
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${jwt}`,
+		},
+	}).then(checkResponse);
+};
+
+export const deleteMovies = (jwt, movieId) => {
+	return fetch(`${BASE_URL}/movies/${movieId}`, {
+		method: 'DELETE',
+		headers: {
+			Accept: '*/*',
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${jwt}`,
+		},
+	}).then(checkResponse);
+};
