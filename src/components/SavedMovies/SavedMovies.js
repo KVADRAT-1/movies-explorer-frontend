@@ -6,17 +6,12 @@ import SearchForm from '../reusableComponents/SearchForm/SearchForm.js';
 import FilterCheckbox from '../reusableComponents/FilterCheckbox/FilterCheckbox.js';
 import MoviesCardList from '../reusableComponents/MoviesCardList/MoviesCardList.js';
 
-function SavedMovies({saveMovies, delMovie, switchFilterSaveMovies, filterSaveMovies}) {
-  const [inputText, setInputText] = useState('');
+function SavedMovies({saveMovies, delMovie, switchFilterSaveMovies, filterSaveMovies, inputTextSaveMovies, setInputTextSaveMovies, maxLengthListSaveMovies, setMaxLengthListSaveMovies}) {
   const [submit, setSubmit] = useState(false);
-  const [preloader, setPreloader] = useState(false)
   
   function onSubmit(e) {
     e.preventDefault();
     setSubmit(true)
-    if(inputText.length > 0) {
-      setPreloader(true)
-    }
   }
 
   return (
@@ -24,8 +19,8 @@ function SavedMovies({saveMovies, delMovie, switchFilterSaveMovies, filterSaveMo
       <SearchForm 
         onSubmit={onSubmit}
         submit={submit}
-        setInputText={setInputText}
-        inputText={inputText}
+        setInputText={setInputTextSaveMovies}
+        inputText={inputTextSaveMovies}
       />
       <FilterCheckbox 
         switchFilter={switchFilterSaveMovies}
@@ -35,6 +30,9 @@ function SavedMovies({saveMovies, delMovie, switchFilterSaveMovies, filterSaveMo
       movies={saveMovies}
       delMovie={delMovie}
       filter={filterSaveMovies}
+      inputText={inputTextSaveMovies}
+      maxLengthListMovies={maxLengthListSaveMovies}
+      setMaxLengthListMovies={setMaxLengthListSaveMovies}
       />}
     </div>
   );

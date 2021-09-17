@@ -1,37 +1,46 @@
 import './MoviesCardList.css';
-
-import { useState } from 'react';
-
+import { useEffect } from 'react';
 import MoviesCard from './MoviesCard/MoviesCard.js';
 
-function MoviesCardList({movies, addSaveMovies, delMovie, saveMoviesId}) {
-  const [moviesMaxLength, setMaxMoviesLength] = useState(12);
-
+function MoviesCardList({movies, addSaveMovies, delMovie, saveMoviesId, filter, inputText, maxLengthListMovies, setMaxLengthListMovies}) {
   function addMoviesLength() {
     let screenWidth = document.documentElement.clientWidth;
     if (screenWidth >= 1280) {
-      setMaxMoviesLength(moviesMaxLength + 3);
+      setMaxLengthListMovies(maxLengthListMovies + 3);
     } else if (screenWidth >= 768) {
-      setMaxMoviesLength(moviesMaxLength + 2);
+      setMaxLengthListMovies(maxLengthListMovies + 2);
     } else if (screenWidth < 768) {
-      setMaxMoviesLength(moviesMaxLength + 1);
+      setMaxLengthListMovies(maxLengthListMovies + 1);
     }
   }
+
+  useEffect(() => {
+    let screenWidth = document.documentElement.clientWidth;
+    if (screenWidth >= 1280) {
+      setMaxLengthListMovies(12);
+    } else if (screenWidth >= 768) {
+      setMaxLengthListMovies(8);
+    } else if (screenWidth < 768) {
+      setMaxLengthListMovies(5);
+    }
+  }, [])
 
   return (
     <div className="MoviesCardList">
       <ul className="MoviesCardList__list">
-          {movies.map(movie => (
-                <MoviesCard
-                  key={movie._id}
-                  movie={movie}
-                  moviesMaxLength={moviesMaxLength}
-                  setMaxMoviesLength={setMaxMoviesLength}
-                  addSaveMovies={addSaveMovies}
-                  delMovie={delMovie}
-                  saveMoviesId={saveMoviesId}
-                />
-              )
+          {movies.map((movie, i) => {
+            if ((movie.nameRU.match(inputText) === null) || (filter && movie.duration >= 40)) { return }
+            if ((i + 1) > maxLengthListMovies) { return }
+            return (
+              <MoviesCard
+                key={movie._id}
+                movie={movie}
+                addSaveMovies={addSaveMovies}
+                delMovie={delMovie}
+                saveMoviesId={saveMoviesId}
+              />
+            )
+          }
           )}
       </ul>
       <button className="MoviesCardList__button" onClick={addMoviesLength}>Ещё</button>

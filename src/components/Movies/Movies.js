@@ -7,15 +7,14 @@ import FilterCheckbox from '../reusableComponents/FilterCheckbox/FilterCheckbox.
 import Preloader from '../reusableComponents/Preloader/Preloader.js';
 import MoviesCardList from '../reusableComponents/MoviesCardList/MoviesCardList.js';
 
-function Movies({movies, moviesRequest, addSaveMovies, saveMoviesId, delMovie, switchFilterMovies, filterMovies}) {
-  const [inputText, setInputText] = useState('');
+function Movies({movies, moviesRequest, addSaveMovies, saveMoviesId, delMovie, switchFilterMovies, filterMovies, inputTextMovies, setInputTextMovies, maxLengthListMovies, setMaxLengthListMovies}) {
   const [submit, setSubmit] = useState(false);
   const [preloader, setPreloader] = useState(false)
   
   function onSubmit(e) {
     e.preventDefault();
     setSubmit(true)
-    if(inputText.length > 0) {
+    if(inputTextMovies.length > 0) {
       moviesRequest()
       setPreloader(true)
     }
@@ -26,22 +25,26 @@ function Movies({movies, moviesRequest, addSaveMovies, saveMoviesId, delMovie, s
       <SearchForm
         onSubmit={onSubmit}
         submit={submit}
-        setInputText={setInputText}
-        inputText={inputText}
+        setInputText={setInputTextMovies}
+        inputText={inputTextMovies}
       />
       <FilterCheckbox 
         switchFilter={switchFilterMovies}
         filter={filterMovies}
       />
+      {(submit && movies.length === 0 && !preloader) && <p>«Ничего не найдено»</p>}
+      {/* {false && <p>«Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз»</p>} */}
       {movies.length !== 0 && <MoviesCardList
       addSaveMovies={addSaveMovies} 
       movies={movies}
       saveMoviesId={saveMoviesId}
       delMovie={delMovie}
       filter={filterMovies}
+      inputText={inputTextMovies}
+      maxLengthListMovies={maxLengthListMovies}
+      setMaxLengthListMovies={setMaxLengthListMovies}
       />}
       {(movies.length === 0 && preloader) && <Preloader/>}
-      {/* {false ? <p>«Ничего не найдено»</p> : <p>«Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз»</p>} */}
     </div>
   );
 }

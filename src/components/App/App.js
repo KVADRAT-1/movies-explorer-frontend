@@ -18,7 +18,13 @@ import { register, authorization, tokenValidity, updatesProfile, createMovie, re
 
 function App() {
   const { pathname } = useLocation();
+  const [inputTextMovies, setInputTextMovies] = useState('');
+  const [inputTextSaveMovies, setInputTextSaveMovies] = useState('');
   const [filterSaveMovies, setFilterSaveMovies] = useState(false);
+
+  const [maxLengthListMovies, setMaxLengthListMovies] = useState(12);
+  const [maxLengthListSaveMovies, setMaxLengthListSaveMovies] = useState(12);
+
   const [filterMovies, setFilterMovies] = useState(false);
   const [movies, setMovies] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
@@ -30,12 +36,12 @@ function App() {
     _id: '',
   });
 
-  function switchFilterSaveMovies() {
-    setFilterSaveMovies(!filterSaveMovies);
-  }
-
   function switchFilterMovies() {
     setFilterMovies(!filterMovies);
+  }
+
+  function switchFilterSaveMovies() {
+    setFilterSaveMovies(!filterSaveMovies);
   }
 
   const history = useHistory();
@@ -173,6 +179,10 @@ function App() {
             delMovie={delMovie}
             switchFilterMovies={switchFilterMovies}
             filterMovies={filterMovies}
+            inputTextMovies={inputTextMovies}
+            setInputTextMovies={setInputTextMovies}
+            maxLengthListMovies={maxLengthListMovies}
+            setMaxLengthListMovies={setMaxLengthListMovies}
           />
         </Route>
         <Route exact path='/saved-movies'>
@@ -183,6 +193,10 @@ function App() {
             delMovie={delMovie}
             switchFilterSaveMovies={switchFilterSaveMovies}
             filterSaveMovies={filterSaveMovies}
+            inputTextSaveMovies={inputTextSaveMovies}
+            setInputTextSaveMovies={setInputTextSaveMovies}
+            maxLengthListSaveMovies={maxLengthListSaveMovies}
+            setMaxLengthListSaveMovies={setMaxLengthListSaveMovies}
           />
         </Route>
         <Route exact path='/profile'>

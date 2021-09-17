@@ -2,7 +2,7 @@ export const getMovies = () => {
 	return fetch('https://api.nomoreparties.co/beatfilm-movies', {
 	}).then(response => {
         if (!response.ok) {
-            return Promise.reject(`Error: ${response.status}`);
+            return Promise.reject(`Error: ---------------------------${response.status}---------------------------`);
         }
         return response.json();
     }).then(response => {

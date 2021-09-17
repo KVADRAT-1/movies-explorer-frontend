@@ -7,7 +7,7 @@ import iconNotfavoriteActive from '../../../../images/MoviesCard/MoviesCard__ico
 import iconFavoriteActive from '../../../../images/MoviesCard/MoviesCard__icon-favoriteActive.svg';
 import iconDeleteFavoriteActive from '../../../../images/MoviesCard/MoviesCard__icon-delete-favoriteActive.svg';
 
-function MoviesCard({movie, moviesMaxLength, setMaxMoviesLength, addSaveMovies, delMovie, saveMoviesId, filter}) {
+function MoviesCard({movie, addSaveMovies, delMovie, saveMoviesId}) {
   const { pathname } = useLocation();
   const [favoriteActive, setFavoriteActive] = useState(false);
 
@@ -24,14 +24,6 @@ function MoviesCard({movie, moviesMaxLength, setMaxMoviesLength, addSaveMovies, 
   }
 
   useEffect(() => {
-    let screenWidth = document.documentElement.clientWidth;
-    if (screenWidth >= 1280) {
-      setMaxMoviesLength(12);
-    } else if (screenWidth >= 768) {
-      setMaxMoviesLength(8);
-    } else if (screenWidth < 768) {
-      setMaxMoviesLength(5);
-    }
     if (pathname === '/movies') {
       if (saveMoviesId.includes(movie._id)) {
         setFavoriteActive(!favoriteActive)
@@ -39,28 +31,19 @@ function MoviesCard({movie, moviesMaxLength, setMaxMoviesLength, addSaveMovies, 
     }
   }, [])
 
-  // return (
-  //     <li className="MoviesCard">
-  //         <div className='MoviesCard__ebout-movie'>
-  //           <p className="MoviesCard__text">{movie.nameRU}</p>
-  //           <p className="MoviesCard__movie-time">{`${Math.floor(movie.duration / 60)}ч${movie.duration % 60}м`}</p>
-  //         </div>
-  //         <img className='MoviesCard__like' src={pathname === '/movies' ? (favoriteActive ? iconFavoriteActive : iconNotfavoriteActive) : iconDeleteFavoriteActive} onClick={clickIcon} alt={'like'}/>
-  //         <img className="MoviesCard__photo" src={movie.image} alt={'photoMovie'}/>
-  //     </li>
-  // );
+  function openTrailer() {
+    window.open(movie.trailerLink);
+  }
 
   return (
-    movie._id <= moviesMaxLength && (
       <li className="MoviesCard">
           <div className='MoviesCard__ebout-movie'>
             <p className="MoviesCard__text">{movie.nameRU}</p>
             <p className="MoviesCard__movie-time">{`${Math.floor(movie.duration / 60)}ч${movie.duration % 60}м`}</p>
           </div>
           <img className='MoviesCard__like' src={pathname === '/movies' ? (favoriteActive ? iconFavoriteActive : iconNotfavoriteActive) : iconDeleteFavoriteActive} onClick={clickIcon} alt={'like'}/>
-          <img className="MoviesCard__photo" src={movie.image} alt={'photoMovie'}/>
+          <img className="MoviesCard__photo" src={movie.image} onClick={openTrailer} alt={movie.nameRU}/>
       </li>
-    )
   );
 }
 

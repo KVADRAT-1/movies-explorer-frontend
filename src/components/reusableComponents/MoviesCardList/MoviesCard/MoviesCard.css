@@ -47,6 +47,10 @@
     grid-column-end: -1;
 }
 
+.MoviesCard__photo:hover {
+    cursor: pointer;
+}
+
 @media (max-width: 1279px) {
     .MoviesCard {
         grid-template-rows: 1fr 190px;
