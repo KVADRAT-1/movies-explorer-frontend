@@ -6,6 +6,6 @@
 
 ## Ссылки: 
 
-Ссылка на сайт: http://kostin.nomoredomains.club
+Ссылка на сайт: http://diploma.kostin.nomoredomains.club
 Публичный адрес сервера: api.diploma.kostin.nomoredomains.club
 Публичный IP-адрес сервера: 178.154.226.187
