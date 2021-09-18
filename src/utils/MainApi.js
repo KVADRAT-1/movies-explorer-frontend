@@ -5,7 +5,7 @@ const checkResponse = res => {
 	return res.json();
 };
 
-export const BASE_URL = 'http://localhost:3000';// http://api.diploma.kostin.nomoredomains.club
+export const BASE_URL = 'http://api.diploma.kostin.nomoredomains.club';
 
 export const register = userRegistrationData => {
 	return fetch(`${BASE_URL}/signup`, {
