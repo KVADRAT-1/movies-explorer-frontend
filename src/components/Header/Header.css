@@ -9,6 +9,10 @@
     font-size: 12px;
 }
 
+.Header__icon:hover {
+    cursor: pointer;
+}
+
 @media (max-width: 1279px) {
     .Header {
         padding:0 30px;

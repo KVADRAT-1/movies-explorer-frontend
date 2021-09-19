@@ -15,6 +15,7 @@ import Error from '../Error/Error.js';
 
 import { getMovies } from '../../utils/MoviesApi.js'
 import { register, authorization, tokenValidity, updatesProfile, createMovie, returnMovies, deleteMovies } from '../../utils/MainApi.js'
+import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 
 function App() {
   const { pathname } = useLocation();
@@ -24,7 +25,6 @@ function App() {
 
   const [maxLengthListMovies, setMaxLengthListMovies] = useState(12);
   const [maxLengthListSaveMovies, setMaxLengthListSaveMovies] = useState(12);
-//ssss
   const [filterMovies, setFilterMovies] = useState(false);
   const [movies, setMovies] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
@@ -36,6 +36,11 @@ function App() {
     _id: '',
   });
 
+  const history = useHistory();
+
+  // localStorage.setItem('jwt', res.token);
+  // const jwt = localStorage.getItem('jwt');
+
   function switchFilterMovies() {
     setFilterMovies(!filterMovies);
   }
@@ -43,8 +48,6 @@ function App() {
   function switchFilterSaveMovies() {
     setFilterSaveMovies(!filterSaveMovies);
   }
-
-  const history = useHistory();
 
   function checkToken() {
 		const jwt = localStorage.getItem('jwt');
@@ -57,19 +60,36 @@ function App() {
 						email: email,
 						_id: _id,
 					});
-          toSwitchLoggedIn()
+          retMovies()
+          setLoggedIn(true)
           history.push('/movies');
 				})
 		}
 	}
 
   useEffect(() => {
-		checkToken()
+    const jwt = localStorage.getItem('jwt');
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    const currentUserSaveMovies = JSON.parse(localStorage.getItem('currentUserSaveMovies'));
+    const currentUserSaveMoviesId = JSON.parse(localStorage.getItem('currentUserSaveMoviesId'));
+    if (jwt) {
+      console.log('1')
+      setLoggedIn(true)
+      history.push('/movies');
+      setUserData(user)
+      setSaveMovies(currentUserSaveMovies)
+      setSaveMoviesId(currentUserSaveMoviesId)
+    }
 	}, []);
 
   useEffect(() => {
-    retMovies()
+    localStorage.setItem('currentUser', JSON.stringify(userData));
 	}, [userData]);
+
+  useEffect(() => {
+    localStorage.setItem('currentUserSaveMovies', JSON.stringify(saveMovies));
+    localStorage.setItem('currentUserSaveMoviesId', JSON.stringify(saveMoviesId));
+	}, [saveMovies, saveMoviesId]);
 
   function addSaveMovies(movie) {
     const jwt = localStorage.getItem('jwt');
@@ -149,77 +169,75 @@ function App() {
     })
   }
 
-  function toSwitchLoggedIn() {
-    setLoggedIn(!loggedIn)
-  }
-
   function logOutOfProfile() {
-    localStorage.removeItem('jwt');
+    localStorage.clear();
+    setLoggedIn(false)
     history.push('/');
   }
 
   return (
     <div className='App'>
-      {!(pathname === '/sign-in' || pathname === '/sign-up' || pathname === '/error') && <Header />}
-      <Switch>
-        <Route exact path='/error'>
-          <Error />
-        </Route>
-        <Route exact path='/'>
-          <Main />
-        </Route>
-        <Route exact path='/movies'>
-          <ProtectedRoute 
-            component={Movies}
-            moviesRequest={moviesRequest}
-            loggedIn={loggedIn}
-            movies={movies}
-            addSaveMovies={addSaveMovies}
-            saveMoviesId={saveMoviesId}
-            delMovie={delMovie}
-            switchFilterMovies={switchFilterMovies}
-            filterMovies={filterMovies}
-            inputTextMovies={inputTextMovies}
-            setInputTextMovies={setInputTextMovies}
-            maxLengthListMovies={maxLengthListMovies}
-            setMaxLengthListMovies={setMaxLengthListMovies}
-          />
-        </Route>
-        <Route exact path='/saved-movies'>
-          <ProtectedRoute 
-            component={SavedMovies}
-            loggedIn={loggedIn}
-            saveMovies={saveMovies}
-            delMovie={delMovie}
-            switchFilterSaveMovies={switchFilterSaveMovies}
-            filterSaveMovies={filterSaveMovies}
-            inputTextSaveMovies={inputTextSaveMovies}
-            setInputTextSaveMovies={setInputTextSaveMovies}
-            maxLengthListSaveMovies={maxLengthListSaveMovies}
-            setMaxLengthListSaveMovies={setMaxLengthListSaveMovies}
-          />
-        </Route>
-        <Route exact path='/profile'>
-          <ProtectedRoute 
-            component={Profile}
-            loggedIn={loggedIn}
-            userData={userData}
-            logOutOfProfile={logOutOfProfile}
-            changeProfile={changeProfile}
-          />
-        </Route>
-        <Route exact path='/sign-up'>
-          <Register 
-            registerUser={registerUser}
-          />
-        </Route>
-        <Route exact path='/sign-in'>
-          <Login 
-            loginUser={loginUser}
-          />
-        </Route>
-      </Switch>
-      {!(pathname === '/profile' || pathname === '/sign-in' || pathname === '/sign-up' || pathname === '/error') && <Footer />}
+      <CurrentUserContext.Provider value={userData}>
+        {!(pathname === '/sign-in' || pathname === '/sign-up' || pathname === '/error') && <Header loggedIn={loggedIn}/>}
+        <Switch>
+          <Route exact path='/error'>
+            <Error />
+          </Route>
+          <Route exact path='/'>
+            <Main />
+          </Route>
+          <Route exact path='/movies'>
+            <ProtectedRoute 
+              component={Movies}
+              moviesRequest={moviesRequest}
+              loggedIn={loggedIn}
+              movies={movies}
+              addSaveMovies={addSaveMovies}
+              saveMoviesId={saveMoviesId}
+              delMovie={delMovie}
+              switchFilterMovies={switchFilterMovies}
+              filterMovies={filterMovies}
+              inputTextMovies={inputTextMovies}
+              setInputTextMovies={setInputTextMovies}
+              maxLengthListMovies={maxLengthListMovies}
+              setMaxLengthListMovies={setMaxLengthListMovies}
+            />
+          </Route>
+          <Route exact path='/saved-movies'>
+            <ProtectedRoute 
+              component={SavedMovies}
+              loggedIn={loggedIn}
+              saveMovies={saveMovies}
+              delMovie={delMovie}
+              switchFilterSaveMovies={switchFilterSaveMovies}
+              filterSaveMovies={filterSaveMovies}
+              inputTextSaveMovies={inputTextSaveMovies}
+              setInputTextSaveMovies={setInputTextSaveMovies}
+              maxLengthListSaveMovies={maxLengthListSaveMovies}
+              setMaxLengthListSaveMovies={setMaxLengthListSaveMovies}
+            />
+          </Route>
+          <Route exact path='/profile'>
+            <ProtectedRoute 
+              component={Profile}
+              loggedIn={loggedIn}
+              logOutOfProfile={logOutOfProfile}
+              changeProfile={changeProfile}
+            />
+          </Route>
+          <Route exact path='/sign-up'>
+            <Register 
+              registerUser={registerUser}
+            />
+          </Route>
+          <Route exact path='/sign-in'>
+            <Login 
+              loginUser={loginUser}
+            />
+          </Route>
+        </Switch>
+        {!(pathname === '/profile' || pathname === '/sign-in' || pathname === '/sign-up' || pathname === '/error') && <Footer />}
+      </CurrentUserContext.Provider>
 		</div>
   );
 }

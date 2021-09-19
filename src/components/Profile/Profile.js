@@ -1,8 +1,10 @@
 import './Profile.css';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 
-function Profile({userData, logOutOfProfile, changeProfile}) {
+function Profile({logOutOfProfile, changeProfile}) {
+
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
 
@@ -14,6 +16,7 @@ function Profile({userData, logOutOfProfile, changeProfile}) {
 
   const [formValid, setFormValid] = useState(false);
   const [edit, setEdit] = useState(false);
+  const currentUser = useContext(CurrentUserContext);
 
   useEffect(() => {
     const button = document.querySelector('.Profile__button-form')
@@ -28,9 +31,9 @@ function Profile({userData, logOutOfProfile, changeProfile}) {
   }, [nameError, emailError, edit])
 
   useEffect(() => {
-    nameHandler(userData.name)
-    emailHandler(userData.email)
-  }, [userData])
+    nameHandler(currentUser.name)
+    emailHandler(currentUser.email)
+  }, [currentUser])
 
   function nameHandler(name) {
     setName(name)
@@ -81,7 +84,7 @@ function Profile({userData, logOutOfProfile, changeProfile}) {
 
   return (
     <div className='Profile'>
-      <h2 className='Profile__title'>{`Привет, ${userData.name}!`}</h2>
+      <h2 className='Profile__title'>{`Привет, ${currentUser.name}!`}</h2>
       <form className='Profile__form' onSubmit={onSubmit}>
         <div className='Profile__user-data'>
           <p className='Profile__text'>Имя</p>
