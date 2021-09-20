@@ -244,7 +244,7 @@ function App() {
     setPopupText(text)
     setOpenPopup(true)
   }
-
+  
   function logOutOfProfile() {
     localStorage.clear();
     setLoggedIn(false)
