@@ -7,16 +7,17 @@ import FilterCheckbox from '../reusableComponents/FilterCheckbox/FilterCheckbox.
 import Preloader from '../reusableComponents/Preloader/Preloader.js';
 import MoviesCardList from '../reusableComponents/MoviesCardList/MoviesCardList.js';
 
-function Movies({movies, moviesRequest, addSaveMovies, saveMoviesId, delMovie, switchFilterMovies, filterMovies, inputTextMovies, setInputTextMovies, maxLengthListMovies, setMaxLengthListMovies}) {
+function Movies({moviesAll, movies, preloaderMovies, setPreloaderMovies, submitMovies, setSubmitMovies, moviesRequest, addSaveMovies, saveMoviesId, delMovie, setFilterMovies, filterMovies, inputTextMovies, setInputTextMovies, maxLengthListMovies, setMaxLengthListMovies}) {
   const [submit, setSubmit] = useState(false);
-  const [preloader, setPreloader] = useState(false)
   
   function onSubmit(e) {
     e.preventDefault();
     setSubmit(true)
-    if(inputTextMovies.length > 0) {
+    if(inputTextMovies.length > 0 && moviesAll.length === 0 && !submit) {
       moviesRequest()
-      setPreloader(true)
+      setPreloaderMovies(true)
+    } else if (inputTextMovies.length > 0) {
+      setSubmitMovies(!submitMovies)
     }
   }
   
@@ -29,22 +30,19 @@ function Movies({movies, moviesRequest, addSaveMovies, saveMoviesId, delMovie, s
         inputText={inputTextMovies}
       />
       <FilterCheckbox 
-        switchFilter={switchFilterMovies}
-        filter={filterMovies}
+        setFilterMovies={setFilterMovies}
+        filterMovies={filterMovies}
       />
-      {(submit && movies.length === 0 && !preloader) && <p>«Ничего не найдено»</p>}
-      {/* {false && <p>«Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз»</p>} */}
+      {(submit && movies.length === 0 && !preloaderMovies) && <p>«Ничего не найдено»</p>}
       {movies.length !== 0 && <MoviesCardList
       addSaveMovies={addSaveMovies} 
       movies={movies}
       saveMoviesId={saveMoviesId}
       delMovie={delMovie}
-      filter={filterMovies}
-      inputText={inputTextMovies}
       maxLengthListMovies={maxLengthListMovies}
       setMaxLengthListMovies={setMaxLengthListMovies}
       />}
-      {(movies.length === 0 && preloader) && <Preloader/>}
+      {(preloaderMovies) && <Preloader/>}
     </div>
   );
 }

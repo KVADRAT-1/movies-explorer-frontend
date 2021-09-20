@@ -6,12 +6,15 @@ import SearchForm from '../reusableComponents/SearchForm/SearchForm.js';
 import FilterCheckbox from '../reusableComponents/FilterCheckbox/FilterCheckbox.js';
 import MoviesCardList from '../reusableComponents/MoviesCardList/MoviesCardList.js';
 
-function SavedMovies({saveMovies, delMovie, switchFilterSaveMovies, filterSaveMovies, inputTextSaveMovies, setInputTextSaveMovies, maxLengthListSaveMovies, setMaxLengthListSaveMovies}) {
+function SavedMovies({submitSaveMovies, setSubmitSaveMovies,saveMovies, delMovie, filterSaveMovies, setFilterSaveMovies, inputTextSaveMovies, setInputTextSaveMovies, maxLengthListSaveMovies, setMaxLengthListSaveMovies}) {
   const [submit, setSubmit] = useState(false);
   
   function onSubmit(e) {
     e.preventDefault();
-    setSubmit(true)
+    if (inputTextSaveMovies.length > 0) {
+      setSubmit(true)
+      setSubmitSaveMovies(!submitSaveMovies)
+    }
   }
 
   return (
@@ -22,15 +25,14 @@ function SavedMovies({saveMovies, delMovie, switchFilterSaveMovies, filterSaveMo
         setInputText={setInputTextSaveMovies}
         inputText={inputTextSaveMovies}
       />
-      <FilterCheckbox 
-        switchFilter={switchFilterSaveMovies}
-        filter={filterSaveMovies}
+      <FilterCheckbox
+        filterMovies={filterSaveMovies}
+        setFilterMovies={setFilterSaveMovies}
       />
+      {(submit && saveMovies.length === 0) && <p>«Ничего не найдено»</p>}
       {saveMovies.length !== 0 && <MoviesCardList 
       movies={saveMovies}
       delMovie={delMovie}
-      filter={filterSaveMovies}
-      inputText={inputTextSaveMovies}
       maxLengthListMovies={maxLengthListSaveMovies}
       setMaxLengthListMovies={setMaxLengthListSaveMovies}
       />}

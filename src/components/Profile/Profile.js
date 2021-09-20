@@ -3,8 +3,7 @@ import './Profile.css';
 import { useState, useEffect, useContext } from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 
-function Profile({logOutOfProfile, changeProfile}) {
-
+function Profile({userData, logOutOfProfile, changeProfile}) {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
 
@@ -18,17 +17,25 @@ function Profile({logOutOfProfile, changeProfile}) {
   const [edit, setEdit] = useState(false);
   const currentUser = useContext(CurrentUserContext);
 
+  function checkMatch() {
+    if (name !== userData.name || email !== userData.email) {
+      return false
+    } else {
+      return true
+    }
+  }
+
   useEffect(() => {
     const button = document.querySelector('.Profile__button-form')
     if (button === null) { return }
-    if (nameError || emailError) {
+    if (nameError || emailError || checkMatch()) {
       setFormValid(false)
       button.style = 'background: #F8F8F8; color: #C2C2C2; cursor: default;'
     } else {
       setFormValid(true)
-      button.style = 'background: #FF6838; color: wight; cursor: pointer;'
+      button.style = 'background: #FF6838; color: #F8F8F8; cursor: pointer;'
     }
-  }, [nameError, emailError, edit])
+  }, [nameError, emailError, edit, name, email])
 
   useEffect(() => {
     nameHandler(currentUser.name)
@@ -54,17 +61,17 @@ function Profile({logOutOfProfile, changeProfile}) {
   }
 
   function emailHandler(email) {
-      setEmail(email)
-      const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      if (!re.test(String(email).toLowerCase())) {
-          if (email.length === 0) {
-              setEmailError('Введите ваш емейл');
-          } else {
-              setEmailError('Некорректный емейл');
-          }
-      } else {
-          setEmailError('');
-      }
+    setEmail(email)
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!re.test(String(email).toLowerCase())) {
+        if (email.length === 0) {
+            setEmailError('Введите ваш емейл');
+        } else {
+            setEmailError('Некорректный емейл');
+        }
+    } else {
+        setEmailError('');
+    }
   }
 
   function onSubmit(e) {

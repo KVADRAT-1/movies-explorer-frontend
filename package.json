@@ -19,7 +19,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "commit": "git status && git add -A && git status && git commit -m level-3/18.09.2021/2 && git push origin level-3",
+    "commit": "git status && git add -A && git status && git commit -m level-3/20.09.2021/1 && git push origin level-3",
     "deploy": "npm run build && scp -r ./build/* diplom@178.154.226.187:/home/diplom/movies-explorer-front"
   },
   "eslintConfig": {

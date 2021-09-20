@@ -2,7 +2,7 @@ import './MoviesCardList.css';
 import { useEffect } from 'react';
 import MoviesCard from './MoviesCard/MoviesCard.js';
 
-function MoviesCardList({movies, addSaveMovies, delMovie, saveMoviesId, filter, inputText, maxLengthListMovies, setMaxLengthListMovies}) {
+function MoviesCardList({movies, addSaveMovies, delMovie, saveMoviesId, maxLengthListMovies, setMaxLengthListMovies}) {
   function addMoviesLength() {
     let screenWidth = document.documentElement.clientWidth;
     if (screenWidth >= 1280) {
@@ -29,7 +29,6 @@ function MoviesCardList({movies, addSaveMovies, delMovie, saveMoviesId, filter, 
     <div className="MoviesCardList">
       <ul className="MoviesCardList__list">
           {movies.map((movie, i) => {
-            if ((movie.nameRU.match(inputText) === null) || (filter && movie.duration >= 40)) { return }
             if ((i + 1) > maxLengthListMovies) { return }
             return (
               <MoviesCard
