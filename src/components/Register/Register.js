@@ -1,10 +1,13 @@
 import './Register.css';
+
 import Authorization from '../reusableComponents/Authorization/Authorization.js'
 
-function Register() {
+function Register({registerUser}) {
   return (
     <div className="Register">
-      <Authorization />
+      <Authorization
+        registerUser={registerUser}
+      />
     </div>
   );
 }

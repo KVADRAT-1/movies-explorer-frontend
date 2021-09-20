@@ -79,8 +79,7 @@
     border: none;
     border-radius: 3px;
     color: #FFFFFF;
-    background: #FF6838
-    ;
+    background: #C2C2C2;
 }
 
 .Authorization__button:hover {
@@ -99,8 +98,7 @@
 .Authorization__link {
     margin-left: 6px;
     text-decoration: none;
-    color: #FF6838
-    ;
+    color: #FF6838;
 }
 
 .Authorization__link:hover {

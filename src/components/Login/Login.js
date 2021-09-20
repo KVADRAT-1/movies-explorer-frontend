@@ -1,10 +1,13 @@
 import './Login.css';
+
 import Authorization from '../reusableComponents/Authorization/Authorization.js'
 
-function Login() {
+function Login({loginUser}) {
   return (
     <div className="Login">
-      <Authorization/>
+      <Authorization
+        loginUser={loginUser}
+      />
     </div>
   );
 }

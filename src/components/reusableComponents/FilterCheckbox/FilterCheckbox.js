@@ -1,21 +1,17 @@
 import './FilterCheckbox.css';
-
-import { useState } from 'react';
-
 import switchNotActive from '../../../images/FilterCheckbox/FilterCheckbox__switch_not-active.svg';
 import switchActive from '../../../images/FilterCheckbox/FilterCheckbox__switch_active.svg';
 
-function FilterCheckbox() {
-  const [toSwitchButton, setToSwitchButton] = useState(false);
-
-  function switchButton() {
-    setToSwitchButton(!toSwitchButton);
+function FilterCheckbox({setFilterMovies, filterMovies}) {
+  
+  function switchFilterMovies() {
+    setFilterMovies(!filterMovies);
   }
 
-  return (
+return (
     <div className="FilterCheckbox">
         <p className='FilterCheckbox__text'>Короткометражки</p>
-        <img className='FilterCheckbox__button' src={toSwitchButton ? switchActive : switchNotActive} onClick={switchButton} alt={'switchButton'}/>
+        <img className='FilterCheckbox__button' src={filterMovies ? switchActive : switchNotActive} onClick={switchFilterMovies} alt={'switchButton'}/>
     </div>
   );
 }

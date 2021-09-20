@@ -41,10 +41,14 @@
 }
 
 .MoviesCard__photo {
+    width: 100%;
+    height: 100%;
     grid-column-start: -3;
     grid-column-end: -1;
-    background: no-repeat url(../../../../images/trash/asd.jpg);
-    background-size: cover;
+}
+
+.MoviesCard__photo:hover {
+    cursor: pointer;
 }
 
 @media (max-width: 1279px) {

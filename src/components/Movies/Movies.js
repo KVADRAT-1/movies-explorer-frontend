@@ -1,18 +1,48 @@
 import './Movies.css';
 
+import { useState } from 'react'
+
 import SearchForm from '../reusableComponents/SearchForm/SearchForm.js';
 import FilterCheckbox from '../reusableComponents/FilterCheckbox/FilterCheckbox.js';
-import Preloader from './Preloader/Preloader.js';
+import Preloader from '../reusableComponents/Preloader/Preloader.js';
 import MoviesCardList from '../reusableComponents/MoviesCardList/MoviesCardList.js';
 
-
-function Movies() {
+function Movies({moviesAll, movies, preloaderMovies, setPreloaderMovies, submitMovies, setSubmitMovies, moviesRequest, addSaveMovies, saveMoviesId, delMovie, setFilterMovies, filterMovies, inputTextMovies, setInputTextMovies, maxLengthListMovies, setMaxLengthListMovies}) {
+  const [submit, setSubmit] = useState(false);
+  
+  function onSubmit(e) {
+    e.preventDefault();
+    setSubmit(true)
+    if(inputTextMovies.length > 0 && moviesAll.length === 0 && !submit) {
+      moviesRequest()
+      setPreloaderMovies(true)
+    } else if (inputTextMovies.length > 0) {
+      setSubmitMovies(!submitMovies)
+    }
+  }
+  
   return (
     <div className="Movies">
-      <SearchForm />
-      <FilterCheckbox />
-      <MoviesCardList />
-      <Preloader />
+      <SearchForm
+        onSubmit={onSubmit}
+        submit={submit}
+        setInputText={setInputTextMovies}
+        inputText={inputTextMovies}
+      />
+      <FilterCheckbox 
+        setFilterMovies={setFilterMovies}
+        filterMovies={filterMovies}
+      />
+      {(submit && movies.length === 0 && !preloaderMovies) && <p>«Ничего не найдено»</p>}
+      {movies.length !== 0 && <MoviesCardList
+      addSaveMovies={addSaveMovies} 
+      movies={movies}
+      saveMoviesId={saveMoviesId}
+      delMovie={delMovie}
+      maxLengthListMovies={maxLengthListMovies}
+      setMaxLengthListMovies={setMaxLengthListMovies}
+      />}
+      {(preloaderMovies) && <Preloader/>}
     </div>
   );
 }

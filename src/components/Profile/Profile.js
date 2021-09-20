@@ -1,60 +1,114 @@
-import { useState } from 'react';
 import './Profile.css';
 
+import { useState, useEffect, useContext } from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 
-function Profile() {
-  const [name, setName] = useState('Виталий');
-  const [mail, setMail] = useState('pochta@yandex.ru');
+function Profile({logOutOfProfile, changeProfile}) {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
 
-  function switchEdit(e) {
-    const profile = document.querySelector('.Profile')
-    const buttonForm = profile.querySelector('.Profile__button-form')
-    const profileButtons = profile.querySelector('.Profile__buttons')
-    const inputAll = profile.querySelectorAll('.Profile__input')
+  const [nameDirty, setNameDirty] = useState(false);
+  const [emailDirty, setEmailDirty] = useState(false);
 
-    if (e.target.className === 'Profile__button-edit') {
-      buttonForm.style.display = 'block'
-      profileButtons.style.display = 'none'
-      inputAll.forEach((item) => {
-        item.removeAttribute('readOnly')
-        item.style.cursor = 'pointer';
-      })
+  const [nameError, setNameError] = useState('Введите ваше имя');
+  const [emailError, setEmailError] = useState('Введите ваш емейл');
+
+  const [formValid, setFormValid] = useState(false);
+  const [edit, setEdit] = useState(false);
+  const currentUser = useContext(CurrentUserContext);
+
+  function checkMatch() {
+    if (name !== currentUser.name || email !== currentUser.email) {
+      return false
     } else {
-      buttonForm.style.display = 'none'
-      profileButtons.style.display = 'flex'
-      inputAll.forEach((item) => {
-        item.setAttribute('readOnly', 'readonly')
-        item.style.cursor = 'default';
-      })
+      return true
     }
   }
 
-  function nameChange(e) {
-  	setName(e.target.value);
+  useEffect(() => {
+    const button = document.querySelector('.Profile__button-form')
+    if (button === null) { return }
+    if (nameError || emailError || checkMatch()) {
+      setFormValid(false)
+      button.style = 'background: #F8F8F8; color: #C2C2C2; cursor: default;'
+    } else {
+      setFormValid(true)
+      button.style = 'background: #FF6838; color: #F8F8F8; cursor: pointer;'
+    }
+  }, [nameError, emailError, edit, name, email])
+
+  useEffect(() => {
+    nameHandler(currentUser.name)
+    emailHandler(currentUser.email)
+  }, [currentUser])
+
+  function nameHandler(name) {
+    setName(name)
+    const re = /^[A-zА-я -]+$/;
+    if (!re.test(String(name).toLowerCase()) && name.length > 0) {
+        setNameError('Поле name должно содержить только латиницу, кириллицу, пробел или дефис.');
+    } else if (2 > name.length || 30 < name.length) {
+        if (name.length === 0) {
+            setNameError('Введите ваше имя');
+        } else if (name.length < 2) {
+            setNameError('Используйте не менее 2 символов');
+        } else if (name.length > 30) {
+            setNameError('Используйте менее 30 символов');
+        }
+    } else {
+        setNameError('');
+    }
   }
 
-  function mailChange(e) {
-  	setMail(e.target.value);
+  function emailHandler(email) {
+    setEmail(email)
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!re.test(String(email).toLowerCase())) {
+        if (email.length === 0) {
+            setEmailError('Введите ваш емейл');
+        } else {
+            setEmailError('Некорректный емейл');
+        }
+    } else {
+        setEmailError('');
+    }
+  }
+
+  function onSubmit(e) {
+    e.preventDefault();
+    changeProfile({name: name, email: email})
+    setEdit(!edit)
+  }
+
+  function blurHandLer(e) {
+    if (e.target.name === 'name') { setNameDirty(true) }
+    if (e.target.name === 'email') { setEmailDirty(true) }
+  }
+
+  function switchEdit() {
+    setEdit(!edit)
   }
 
   return (
     <div className='Profile'>
-      <h2 className='Profile__title'>Привет, Виталий!</h2>
-      <form className='Profile__form'>
+      <h2 className='Profile__title'>{`Привет, ${currentUser.name}!`}</h2>
+      <form className='Profile__form' onSubmit={onSubmit}>
         <div className='Profile__user-data'>
           <p className='Profile__text'>Имя</p>
-          <input className='Profile__input' readOnly="readonly" value={name} onChange={nameChange} type='text'></input>
+          <input className='Profile__input' type='text' name='name' required onChange={e => {nameHandler(e.target.value)}} onBlur={blurHandLer} value={name} readOnly={!edit}></input>
+          {(nameDirty && nameError) && <span className='Profile__input-error'>{nameError}</span>}
         </div>
         <div className='Profile__user-data'>
           <p className='Profile__text'>Почта</p>
-          <input className='Profile__input' readOnly="readonly"  value={mail} onChange={mailChange} type='mail'></input>
+          <input className='Profile__input'type='mail' name='email' required onChange={e => {emailHandler(e.target.value)}} onBlur={blurHandLer} value={email} readOnly={!edit}></input>
+          {(emailDirty && emailError) && <span className='Profile__input-error'>{emailError}</span>}
         </div>
-        <button className='Profile__button-form' type='button' onClick={switchEdit}>Сохранить</button>
+        {edit && <button disabled={!formValid} className='Profile__button-form'>Сохранить</button>}
       </form>
-      <div className='Profile__buttons'>
+      {!edit && <div className='Profile__buttons'>
         <button className='Profile__button-edit' onClick={switchEdit}>Редактировать</button>
-        <button className='Profile__button-output'>Выйти из аккаунта</button>
-      </div>
+        <button className='Profile__button-output' onClick={logOutOfProfile}>Выйти из аккаунта</button>
+      </div>}
     </div>
   );
 }
