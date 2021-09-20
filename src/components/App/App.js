@@ -32,16 +32,15 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [submitMovies, setSubmitMovies] = useState(false);
   const [submitSaveMovies, setSubmitSaveMovies] = useState(false);
-
-
-
   const [moviesAll, setMoviesAll] = useState([]);
   const [saveMoviesAll, setSaveMoviesAll] = useState([])
-
   const [movies, setMovies] = useState([]);
   const [saveMovies, setSaveMovies] = useState([])
   const [saveMoviesId, setSaveMoviesId] = useState([])
+  const [currentUser, setCurrentUser] = useState({});
 
+  const textError = 'Во время запроса произошла ошибка. '
+  const history = useHistory();
 
   useEffect(() => {
     let moviesFilter = []
@@ -90,14 +89,8 @@ function App() {
     } else {
       moviesFilter = saveMoviesAll
     }
-    console.log(1)
     setSaveMovies(moviesFilter)
 	}, [saveMoviesAll, filterSaveMovies, submitSaveMovies]);
-
-  const [userData, setUserData] = useState({});
-
-  const textError = 'Во время запроса произошла ошибка. '
-  const history = useHistory();
 
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
@@ -107,15 +100,15 @@ function App() {
     const currentUserSaveMoviesId = JSON.parse(localStorage.getItem('currentUserSaveMoviesId'));
     setLoggedIn(true)
     history.push('/movies');
-    setUserData(user)
+    setCurrentUser(user)
     setSaveMoviesAll(currentUserSaveMovies)
     setSaveMoviesId(currentUserSaveMoviesId)
     }
 	}, []);
 
   useEffect(() => {
-    localStorage.setItem('currentUser', JSON.stringify(userData));
-	}, [userData]);
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+	}, [currentUser]);
 
   useEffect(() => {
     localStorage.setItem('currentUserSaveMovies', JSON.stringify(saveMoviesAll));
@@ -152,7 +145,7 @@ function App() {
 						_id: res.user._id,
 					}
           localStorage.setItem('currentUser', JSON.stringify(data));
-					setUserData(data);
+					setCurrentUser(data);
           setLoggedIn(true)
           history.push('/movies');
           retMovies()
@@ -167,7 +160,7 @@ function App() {
     const jwt = localStorage.getItem('jwt');
     returnMovies(jwt).then(response => {
       response.movies.map((movie) => {
-        if (userData._id === movie.owner) {
+        if (currentUser._id === movie.owner) {
           const newMovie = {
             duration: movie.duration,
             image: movie.image,
@@ -190,7 +183,7 @@ function App() {
 
   function addSaveMovies(movie) {
     const jwt = localStorage.getItem('jwt');
-    createMovie(movie, userData._id, jwt).then(response => {
+    createMovie(movie, currentUser._id, jwt).then(response => {
       const newMovie = {
         duration: response.movie.duration,
         image: response.movie.image,
@@ -214,12 +207,12 @@ function App() {
         deleteMovies(jwt, movie.serverId).then(response => {
           setSaveMoviesAll(saveMoviesAll.filter(obj => obj._id !== response.movieUser.movieId));
           setSaveMoviesId(saveMoviesId.filter(obj => obj !== response.movieUser.movieId));
+        })
+        .catch(error => {
+          showPopup(`${textError}${error}`)
         });
       }
     })
-    .catch(error => {
-      showPopup(`${textError}${error}`)
-    });
   }
 
   function moviesRequest() {
@@ -236,7 +229,7 @@ function App() {
     const jwt = localStorage.getItem('jwt');
     updatesProfile({name: newUserData.name, email: newUserData.email, token: jwt}).then(data => {
       showPopup('Данные вашего аккаунта изменены')
-      setUserData({
+      setCurrentUser({
         name: data.user.name,
         email: data.user.email,
         _id: data.user._id,
@@ -260,7 +253,7 @@ function App() {
   
   return (
     <div className='App'>
-      <CurrentUserContext.Provider value={userData}>
+      <CurrentUserContext.Provider value={currentUser}>
         
         {!(pathname === '/sign-in' || pathname === '/sign-up' || pathname === '/error') && <Header loggedIn={loggedIn}/>}
         <Popup 
@@ -269,9 +262,6 @@ function App() {
           popupText={popupText}
         />
         <Switch>
-          <Route exact path='/error'>
-            <Error />
-          </Route>
           <Route exact path='/'>
             <Main />
           </Route>
@@ -317,7 +307,6 @@ function App() {
             <ProtectedRoute 
               component={Profile}
               loggedIn={loggedIn}
-              userData={userData}
               logOutOfProfile={logOutOfProfile}
               changeProfile={changeProfile}
             />
@@ -335,6 +324,9 @@ function App() {
               loggedIn={!loggedIn}
               loginUser={loginUser}
             />
+          </Route>
+          <Route exact path='*'>
+            <Error />
           </Route>
         </Switch>
         {!(pathname === '/profile' || pathname === '/sign-in' || pathname === '/sign-up' || pathname === '/error') && <Footer />}

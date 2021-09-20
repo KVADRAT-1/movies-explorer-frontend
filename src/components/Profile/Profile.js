@@ -3,7 +3,7 @@ import './Profile.css';
 import { useState, useEffect, useContext } from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 
-function Profile({userData, logOutOfProfile, changeProfile}) {
+function Profile({logOutOfProfile, changeProfile}) {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
 
@@ -18,7 +18,7 @@ function Profile({userData, logOutOfProfile, changeProfile}) {
   const currentUser = useContext(CurrentUserContext);
 
   function checkMatch() {
-    if (name !== userData.name || email !== userData.email) {
+    if (name !== currentUser.name || email !== currentUser.email) {
       return false
     } else {
       return true

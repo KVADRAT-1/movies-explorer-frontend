@@ -1,8 +1,10 @@
 import './MoviesCardList.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import MoviesCard from './MoviesCard/MoviesCard.js';
 
 function MoviesCardList({movies, addSaveMovies, delMovie, saveMoviesId, maxLengthListMovies, setMaxLengthListMovies}) {
+  const [stillButton, setStillButton] = useState(true)
+
   function addMoviesLength() {
     let screenWidth = document.documentElement.clientWidth;
     if (screenWidth >= 1280) {
@@ -25,6 +27,15 @@ function MoviesCardList({movies, addSaveMovies, delMovie, saveMoviesId, maxLengt
     }
   }, [])
 
+  useEffect(() => {
+    setStillButton(false)
+    movies.map((movie, i) => {
+      if ((i + 1) > maxLengthListMovies) { 
+        setStillButton(true)
+      }
+    })
+  }, [movies, maxLengthListMovies])
+
   return (
     <div className="MoviesCardList">
       <ul className="MoviesCardList__list">
@@ -42,7 +53,7 @@ function MoviesCardList({movies, addSaveMovies, delMovie, saveMoviesId, maxLengt
           }
           )}
       </ul>
-      <button className="MoviesCardList__button" onClick={addMoviesLength}>Ещё</button>
+      {stillButton && <button className="MoviesCardList__button" onClick={addMoviesLength}>Ещё</button>}
     </div>
   );
 }
