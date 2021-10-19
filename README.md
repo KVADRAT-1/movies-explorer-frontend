@@ -12,4 +12,6 @@
 * Express.js 
 * mongoDB
 
+[Ссылка на backend](https://github.com/KVADRAT-1/movies-explorer-api)
+
 [Ссылка на сайт](https://github.com/KVADRAT-1/movies-explorer-frontend)
